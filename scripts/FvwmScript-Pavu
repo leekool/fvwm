@@ -1,0 +1,29 @@
+WindowTitle {Volume Mixer}
+WindowSize  500 400
+Font "xft:Tamzen:pixelsize=15"
+
+Init
+ Begin
+ Do {Next ("Volume Mixer") FlipFocus}
+ End
+
+PeriodicTasks
+ Begin
+ Do {Exec fvwmscriptpavu.sh}
+ End
+
+
+Widget 1
+Property
+ Position 0 0
+ Size 500 400
+ Value 0
+ Type SwallowExec
+ Title {Volume Control}
+ SwallowExec {exec pavucontrol -t 3}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End

@@ -1,0 +1,8 @@
+/* XPM */
+static char * titlebar_xpm[] = {
+"3 3 2 1",
+"  s bottomShadowColor m #686d62 c #686d62",
+". s background m #777a73 c #777a73",
+"   ",
+" . ",
+"   "};

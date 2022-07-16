@@ -1,0 +1,8 @@
+/* XPM */
+static char * taskbarbg_xpm[] = {
+"3 3 2 1",
+"  s bottomShadowColor m black c #cdc6b6",
+". s background m white c #d8d4c8",
+"   ",
+" . ",
+"   "};

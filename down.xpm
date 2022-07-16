@@ -1,0 +1,8 @@
+/* XPM */
+static char * down_xpm[] = {
+"3 3 2 1",
+"  s bottomShadowColor m black c #696c62",
+". s background m white c #797d73",
+"  ."
+" . ",
+".  "};

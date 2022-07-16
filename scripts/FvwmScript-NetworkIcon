@@ -1,0 +1,31 @@
+WindowTitle {NetworkIcon}
+WindowSize 50 50
+WindowPosition 0 0
+
+Init
+ Begin
+ Set $Icon = (GetOutput {echo $(networkicon.sh)} 1 -1)
+ ChangeIcon 1 $Icon
+ End
+
+PeriodicTasks
+ Begin
+ If (RemainderOfDiv (GetTime) 5)==0 Then
+   Begin
+   Set $Icon = (GetOutput {echo $(networkicon.sh)} 1 -1)
+   ChangeIcon 1 $Icon
+   End
+ End
+
+Widget 1
+Property
+ Type ItemDraw
+ Size 50 50
+ Position 0 0
+ Icon $Icon
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
