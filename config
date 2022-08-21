@@ -680,11 +680,11 @@ DestroyModuleConfig FvwmEvent: *
 *FvwmEvent: PassID
 *FvwmEvent: new_desk
 *FvwmEvent-NewWindow: StartDelay 3
-*FvwmEvent-NewWindow: add_window "ThisWindow ("brave-browser|Alacritty|Mozilla*|Emacs|feh|Thunar") Focus NoWarp"
+*FvwmEvent-NewWindow: add_window "ThisWindow ("brave-browser|Alacritty|Mozilla*|Emacs|feh|Thunar|Nicotine*") Focus NoWarp"
 
 # starting size/position for certain windows
 DestroyModuleConfig StartLeft: *
-*StartLeft: add_window "ThisWindow ("Emacs") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p 0 0'"
+*StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p 0 0'"
 
 DestroyModuleConfig StartRight: *
 *StartRight: add_window "ThisWindow ("brave-browser|Mozilla*") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0'"

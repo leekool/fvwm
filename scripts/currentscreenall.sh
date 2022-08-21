@@ -29,11 +29,25 @@ case $1 in
         ;;
 esac
 
+# if there is a second argument "other"
+# then echo the dimensions of the other screen
+if [ "$2" = "other" ]; then
+    if [ "$pos" -gt "${right[2]}" ]; then
+        echo "${left[1]}";
+        exit 1;
+    else
+        echo "${right[1]}"
+        exit 1;
+    fi
+fi
+
 # which screen is this window displayed in? if $pos
 # is greater than the offset of the rightmost screen,
-# then the window is on the right hand one
+# then the window is on the right-hand one
 if [ "$pos" -gt "${right[2]}" ]; then
-    echo "${right[1]}"
+    echo "${right[1]}";
+    exit 1;
 else
-    echo "${left[1]}"
+    echo "${left[1]}";
+    exit 1;
 fi
