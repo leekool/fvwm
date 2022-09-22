@@ -25,7 +25,6 @@
 InfoStoreAdd terminal alacritty
 
 # environment variables
-SetEnv fvwm_webbrowser /usr/bin/brave
 SetEnv fvwm_term /usr/bin/alacritty
 SetEnv fvwm_wallpaper $[FVWM_USERDIR]/wallpaper
 SetEnv fvwm_icon $[FVWM_USERDIR]/icons
@@ -65,7 +64,7 @@ AddToFunc   StartFunction
 
 DestroyFunc InitFunction
 AddToFunc InitFunction
-+ I Exec exec fvwm-root -r .fvwm/wallpaper/848a81-tile.png
++ I Exec exec fvwm-root -r .fvwm/wallpaper/kidpix02243.png
 + I Exec exec picom --vsync -b --config ~/.config/picom/picom.conf
 + I Exec exec alacritty
 
@@ -141,6 +140,12 @@ AddToFunc MoveRight
 + I Current PipeRead "echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0"
 + I Raise
 
+DestroyFunc MoveOther
+AddToFunc MoveOther
++ I ThisWindow PipeRead "echo ResizeMove frame $(currentscreenall.sh window other | cut -d 'x' -f1)p $(screenheighttaskbar.sh other)p $(currentscreenall.sh window y)p 0"
++ I MoveToDesk 0 0
++ I MoveToPage 0 0
+
 DestroyFunc LeeMaximize
 AddToFunc LeeMaximize
 + I Current PipeRead "echo ResizeMove frame $(currentscreenall.sh window | cut -d 'x' -f1)p $(screenheighttaskbar.sh)p 0 0"
@@ -202,7 +207,7 @@ Style FvwmButtons !Title, !Handles
 Style FvwmButtons UseDecor TaskbarBorder
 Style FvwmButtons WindowListSkip
 Style "KoolTray" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
-  CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable, NeverFocus
+      CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable, NeverFocus
 
 
 # Desktops and Pages
@@ -266,18 +271,21 @@ MoveThreshold 3
 #      13 - FvwmPager Active Page
 #      14 - FvwmIconMan Iconified Button
 ###########
-Colorset 0  fg #32302c, bg #ffffff, TiledPixmap taskbarbg.xpm, hi #92998b, sh #343433    # menu
+Colorset 0  fg #e4e3d5, bg #ffffff, TiledPixmap taskbarbg.xpm, hi #92998b, sh #343433    # menu
 Colorset 1  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar inactive
 Colorset 2  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar active
 Colorset 3  fg #494b46, bg #494b46, hi #686d62  , sh #494b46                             # border inactive
 Colorset 4  fg #222020, bg #222020, hi #32302c, sh #222020                               # border active
-Colorset 5  fg #32302c, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # taskbar/menu
-Colorset 6  fg #32302c, bg #32302c, sh #32302c                                           # taskbar border
-Colorset 7  fg #e4e3d5, bg #ffffff, TiledPixmap down.xpm, hi #5c6057, sh #92998b         # menu active/hover
+Colorset 5  fg #ececfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #050505    # taskbar/menu
+Colorset 6  fg #434343, bg #434343, sh #434343                                           # taskbar border
+Colorset 7  fg #ececfe, bg #ffffff, TiledPixmap down.xpm, hi #606060, sh #474747         # menu active/hover
 Colorset 8  fg #ffffff, bg #003c3c, TiledPixmap pagerbg.xpm, hi #fffefe, sh #948c79      # pager inactive
-Colorset 9  fg white, bg #000000, TiledPixmap down.xpm, hi #92998b, sh #665f52           # taskbar pressed/pager active
-Colorset 10 fg #348283, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # RAM widget
-Colorset 11 fg #d3869b, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # CPU widget
+Colorset 9  fg #ececfe, bg #e4e3d5, TiledPixmap down.xpm, hi #606060, sh #050505           # taskbar pressed/pager active
+Colorset 10 fg #a9a1e1, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # RAM widget
+Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # CPU widget
+Colorset 12 Transparent
+Colorset 13 fg #ccccfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #050505    # taskbar hover
+Colorset 14 fg #999999, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #050505    # taskbar iconified
 ###########
 
 # MenuStyles
@@ -439,14 +447,16 @@ Silent Key F2 A C GotoDesk 0 1
 Silent Key F3 A C GotoDesk 0 2
 Silent Key F4 A C GotoDesk 0 3
 
-Silent Key Return A 4 Exec alacritty  # super+enter opens alacritty
+Silent Key Return A 4 Exec runterminal.sh
 Silent Key Left A 4 ThisWindow MoveLeft
 Silent Key Right A 4 ThisWindow MoveRight
 Silent Key Up A 4 PipeRead "echo $(windowmovement.sh up)"
 Silent Key Down A 4 PipeRead "echo $(windowmovement.sh down)"
+Silent Key O A 4 ThisWindow MoveOther
 
 Silent Key R A 4 Exec rofi -show run
 Silent Key F4 A M Close
+Silent Key F4 A N Close
 
 Silent Key 1 A 4S Exec screenshotssh.sh window
 Silent Key 2 A 4S Exec screenshotssh.sh box
@@ -477,7 +487,7 @@ Silent Key XF86MonBrightnessUp A A Exec xbacklight -inc 5
 #   6 - Iconify (minimize)
 Mouse 1 1 A Menu MenuWindowOps Delete
 Mouse 1 2 A Close
-Mouse 1 4 A Maximize 100 100
+Mouse 1 4 A LeeMaximize 100 100
 Mouse 2 4 A Maximize 0 100
 Mouse 3 4 A Maximize 100 0
 Mouse 1 6 A Iconify
@@ -583,13 +593,17 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: Action Mouse 0 A ret
 *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
 *FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
-*FvwmIconMan: Background #cdc6b6
+*FvwmIconMan: Colorset 12
+*FvwmIconMan: IconColorset 14
+*FvwmIconMan: IconAndSelectColorset 13
 *FvwmIconMan: ButtonGeometry 1x22
 *FvwmIconMan: DrawIcons always
 *FvwmIconMan: FocusAndSelectButton down
+*FvwmIconMan: PlainColorset 5
 *FvwmIconMan: FocusAndSelectColorset 9
 *FvwmIconMan: FocusButton down
 *FvwmIconMan: FocusColorset 9
+*FvwmIconMan: SelectColorset 13
 *FvwmIconMan: ReliefThickness 1
 *FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
 *FvwmIconMan: Format "%i"
@@ -597,7 +611,6 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: IconButton flat
 *FvwmIconMan: ManagerGeometry 1x1
 *FvwmIconMan: MaxButtonWidthByColumns 6
-*FvwmIconMan: PlainColorset 5
 *FvwmIconMan: PlainButton flat
 *FvwmIconMan: SelectButton flat
 *FvwmIconMan: ShowTransient false
@@ -628,7 +641,7 @@ PipeRead "echo *FvwmButtons: Geometry \
 #    Action (Mouse 1) GotoDesk 0 2)
 #*FvwmButtons: (22x1, Id desk3, Title "IV", \
 #    Action (Mouse 1) GotoDesk 0 3)
-*FvwmButtons: (1150x1, Padding 2, Swallow (Respawn) FvwmIconMan "Module FvwmIconMan", Colorset 5)
+*FvwmButtons: (1150x1, Padding 2, Swallow (Respawn) FvwmIconMan "Module FvwmIconMan")
 #*FvwmButtons: (75x1, Padding 2, Swallow (NoHints) KoolPager "FvwmButtons KoolPager")
 *FvwmButtons: (125x1, Padding 2, Swallow KoolerTray "FvwmButtons KoolerTray")
 *FvwmButtons: (30x1, Swallow DateTime "FvwmScript FvwmScript-KoolTime")
@@ -656,7 +669,7 @@ DestroyModuleConfig KoolTray: *
 #*KoolTray: (4x1, Swallow RamCpu 'Module FvwmScript FvwmScript-RamCpu', Frame 0)
 
 DestroyModuleConfig KoolerTray: *
-*KoolerTray: Colorset 5
+*KoolerTray: Colorset 13hn
 *KoolerTray: Rows 1
 *KoolerTray: Columns 133
 *KoolerTray: Padding 1

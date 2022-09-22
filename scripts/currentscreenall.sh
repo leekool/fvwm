@@ -31,15 +31,26 @@ esac
 
 # if there is a second argument "other"
 # then echo the dimensions of the other screen
-if [ "$2" = "other" ]; then
-    if [ "$pos" -gt "${right[2]}" ]; then
-        echo "${left[1]}";
-        exit 1;
-    else
-        echo "${right[1]}"
-        exit 1;
-    fi
-fi
+case $2 in
+    "other")
+        if [ "$pos" -gt "${right[2]}" ]; then
+            echo "${left[1]}";
+            exit 1;
+        else
+            echo "${right[1]}"
+            exit 1;
+        fi
+        ;;
+    "y")
+        if [ "$pos" -gt "${right[2]}" ]; then
+            echo "${right[1]}" | awk 'BEGIN {FS="x"} {print $1}';
+            exit 1;
+        else
+            echo "${left[1]}" | awk 'BEGIN {FS="x"} {print $1}';
+            exit 1;
+        fi
+        ;;
+esac
 
 # which screen is this window displayed in? if $pos
 # is greater than the offset of the rightmost screen,
