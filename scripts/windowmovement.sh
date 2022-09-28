@@ -24,23 +24,58 @@ else
     size="half_height"
 fi
 
-case $1 in
-    "up")
-        if      [ "$size" == "half_width_full_height" ]; then
-            echo "Resize frame keep $(($screen_height / 2))p"
-        else
-            echo "LeeMaximize"
-        fi
-        ;;
-    "down")
-        if      [ "$ypos" -lt 30 ] && [ "$size" == "half_height" ]; then
-            echo "Move keep $(($screen_height / 2))p"
-        elif    [ "$size" == "half_width_full_height" ]; then
-            echo "ResizeMove frame keep $(($screen_height / 2))p keep $(($screen_height / 2))p"
-        else
-            echo "LeeIconify"
-        fi
-esac
+
+if      [ $screen_width -gt $screen_height ]; then
+    case $1 in
+        "up")
+            if      [ "$size" == "half_width_full_height" ]; then
+                echo "Resize frame keep $(($screen_height / 2))p"
+            else
+                echo "LeeMaximize"
+            fi
+            ;;
+        "down")
+            if      [ "$ypos" -lt 30 ] && [ "$size" == "half_height" ]; then
+                echo "Move keep $(($screen_height / 2))p"
+            elif    [ "$size" == "half_width_full_height" ]; then
+                echo "ResizeMove frame keep $(($screen_height / 2))p keep $(($screen_height / 2))p"
+            else
+                echo "LeeIconify"
+            fi
+            ;;
+        "left")
+            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p 0 0"
+            ;;
+        "right")
+            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0"
+            ;;
+    esac
+else
+    case $1 in
+        "up")
+            if      [ "$size" == "half_width_full_height" ]; then
+                echo "Resize frame keep $(($screen_height / 2))p"
+            else
+                echo "LeeMaximize"
+            fi
+            ;;
+        "down")
+            if      [ "$ypos" -lt 30 ] && [ "$size" == "half_height" ]; then
+                echo "Move keep $(($screen_height / 2))p"
+            elif    [ "$size" == "half_width_full_height" ]; then
+                echo "ResizeMove frame keep $(($screen_height / 2))p keep $(($screen_height / 2))p"
+            else
+                echo "LeeIconify"
+            fi
+            ;;
+        "left")
+            echo "ResizeMove frame $(currentscreenall.sh window | cut -d 'x' -f1)p $(expr $(screenheighttaskbar.sh) / 2)p 0 0"
+            ;;
+        "right")
+            echo "ResizeMove frame $(currentscreenall.sh window | cut -d 'x' -f1)p $(expr $(screenheighttaskbar.sh) / 2)p 0 50"
+            ;;
+    esac
+fi
 
 # side may be irrelevant
 # if      ((xpos >= 1920 && xpos <= 1930)) || ((xpos >= 0 && xpos <= 10)); then

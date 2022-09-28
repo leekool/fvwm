@@ -64,7 +64,7 @@ AddToFunc   StartFunction
 
 DestroyFunc InitFunction
 AddToFunc InitFunction
-+ I Exec exec fvwm-root -r .fvwm/wallpaper/kidpix02243.png
++ I Exec exec fvwm-root -r .fvwm/wallpaper/848a81-tile.png
 + I Exec exec picom --vsync -b --config ~/.config/picom/picom.conf
 + I Exec exec alacritty
 
@@ -131,13 +131,13 @@ AddToFunc   ToggleTitle
 DestroyFunc MoveLeft
 AddToFunc MoveLeft
 + I ThisWindow (Maximized) Maximize
-+ I Current PipeRead "echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p 0 0"
++ I Current PipeRead "echo $(windowmovement.sh left)"
 + I Raise
 
 DestroyFunc MoveRight
 AddToFunc MoveRight
 + I ThisWindow (Maximized) Maximize
-+ I Current PipeRead "echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0"
++ I Current PipeRead "echo $(windowmovement.sh right)"
 + I Raise
 
 DestroyFunc MoveOther
@@ -276,16 +276,16 @@ Colorset 1  fg #e4e3d5, bg #d8d4c8                                              
 Colorset 2  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar active
 Colorset 3  fg #494b46, bg #494b46, hi #686d62  , sh #494b46                             # border inactive
 Colorset 4  fg #222020, bg #222020, hi #32302c, sh #222020                               # border active
-Colorset 5  fg #ececfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #050505    # taskbar/menu
+Colorset 5  fg #ececfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar/menu
 Colorset 6  fg #434343, bg #434343, sh #434343                                           # taskbar border
 Colorset 7  fg #ececfe, bg #ffffff, TiledPixmap down.xpm, hi #606060, sh #474747         # menu active/hover
 Colorset 8  fg #ffffff, bg #003c3c, TiledPixmap pagerbg.xpm, hi #fffefe, sh #948c79      # pager inactive
-Colorset 9  fg #ececfe, bg #e4e3d5, TiledPixmap down.xpm, hi #606060, sh #050505           # taskbar pressed/pager active
+Colorset 9  fg #ececfe, bg #e4e3d5, TiledPixmap down.xpm, hi #606060, sh ##1f1f1f           # taskbar pressed/pager active
 Colorset 10 fg #a9a1e1, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # RAM widget
 Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # CPU widget
 Colorset 12 Transparent
-Colorset 13 fg #ccccfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #050505    # taskbar hover
-Colorset 14 fg #999999, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #050505    # taskbar iconified
+Colorset 13 fg #ccccfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
+Colorset 14 fg #999999, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
 ###########
 
 # MenuStyles
@@ -693,16 +693,22 @@ DestroyModuleConfig FvwmEvent: *
 *FvwmEvent: PassID
 *FvwmEvent: new_desk
 *FvwmEvent-NewWindow: StartDelay 3
-*FvwmEvent-NewWindow: add_window "ThisWindow ("brave-browser|Alacritty|Mozilla*|Emacs|feh|Thunar|Nicotine*") Focus NoWarp"
+*FvwmEvent-NewWindow: add_window "ThisWindow ("Alacritty|Mozilla*|Emacs|feh|Thunar|Nicotine*") Focus NoWarp"
 
 # starting size/position for certain windows
 DestroyModuleConfig StartLeft: *
 *StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p 0 0'"
 
 DestroyModuleConfig StartRight: *
-*StartRight: add_window "ThisWindow ("brave-browser|Mozilla*") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0'"
+*StartRight: add_window "ThisWindow ("Mozilla*") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0'"
+
+# has to run twice to work for some reason (fix)
+DestroyModuleConfig StartOther: *
+*StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
+*StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
 
 Module FvwmEvent StartLeft
 Module FvwmEvent StartRight
+Module FvwmEvent StartOther
 
 ######
