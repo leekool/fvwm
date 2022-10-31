@@ -54,6 +54,13 @@ ImagePath $[fvwm_icon]:$[fvwm_icon];.png:$[fvwm_wallpaper]:$[FVWM_USERDIR]/icons
 # so using Test (Init) or Test (Restart) can further control
 # actions that are run during the first time run (Init) or
 # actions that are run after a restart.
+
+DestroyFunc InitFunction
+AddToFunc InitFunction
++ I Exec exec fvwm-root -r .fvwm/wallpaper/848a81-tile.png
++ I Exec exec picom -b --config ~/.config/picom/picom.conf
++ I Exec exec autorandr -c
+
 DestroyFunc StartFunction
 AddToFunc   StartFunction
 + I Module FvwmButtons
@@ -61,12 +68,6 @@ AddToFunc   StartFunction
 + I FvwmEvent FvwmEvent-NewWindow
 + I Module FvwmMFL
 + I Module FvwmCommandS
-
-DestroyFunc InitFunction
-AddToFunc InitFunction
-+ I Exec exec fvwm-root -r .fvwm/wallpaper/848a81-tile.png
-+ I Exec exec picom --vsync -b --config ~/.config/picom/picom.conf
-+ I Exec exec alacritty
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -142,7 +143,8 @@ AddToFunc MoveRight
 
 DestroyFunc MoveOther
 AddToFunc MoveOther
-+ I ThisWindow PipeRead "echo ResizeMove frame $(currentscreenall.sh window other | cut -d 'x' -f1)p $(screenheighttaskbar.sh other)p $(currentscreenall.sh window y)p 0"
++ I ThisWindow PipeRead "echo ResizeMove frame $(currentscreenall.sh window other | cut -d 'x' -f1)p $(screenheighttaskbar.sh other)p \
+                        $(currentscreenall.sh window y)p -0p"
 + I MoveToDesk 0 0
 + I MoveToPage 0 0
 
@@ -442,10 +444,10 @@ AddToMenu   MenuSendToPage
 Silent Key F1 A M Menu MenuFvwmRoot
 Silent Key Menu A A Menu MenuFvwmRoot
 Silent Key Tab A M WindowList Root c c NoDeskSort, CurrentAtEnd, SelectOnRelease Meta_L
-Silent Key F1 A C GotoDesk 0 0
-Silent Key F2 A C GotoDesk 0 1
-Silent Key F3 A C GotoDesk 0 2
-Silent Key F4 A C GotoDesk 0 3
+Silent Key 1 A 4S GotoDesk 0 0
+Silent Key 2 A 4S GotoDesk 0 1
+Silent Key 3 A 4S GotoDesk 0 2
+Silent Key 4 A 4S GotoDesk 0 3
 
 Silent Key Return A 4 Exec runterminal.sh
 Silent Key Left A 4 ThisWindow MoveLeft
@@ -456,10 +458,9 @@ Silent Key O A 4 ThisWindow MoveOther
 
 Silent Key R A 4 Exec rofi -show run
 Silent Key F4 A M Close
-Silent Key F4 A N Close
 
-Silent Key 1 A 4S Exec screenshotssh.sh window
-Silent Key 2 A 4S Exec screenshotssh.sh box
+Silent Key S A 4S Exec screenshotssh.sh window
+Silent Key S A 4 Exec screenshotssh.sh box
 
 Silent Key D A 4 SendToModule FvwmScript-DesktopCycle SendString 1 2
 Silent Key T A 4 ThisWindow LeeBringToTop
