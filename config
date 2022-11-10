@@ -273,21 +273,21 @@ MoveThreshold 3
 #      13 - FvwmPager Active Page
 #      14 - FvwmIconMan Iconified Button
 ###########
-Colorset 0  fg #e4e3d5, bg #ffffff, TiledPixmap taskbarbg.xpm, hi #92998b, sh #343433    # menu
+Colorset 0  fg #32302c, bg #fffefe, TiledPixmap taskbarbg.xpm, hi #92998b, sh #343433    # menu
 Colorset 1  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar inactive
 Colorset 2  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar active
 Colorset 3  fg #494b46, bg #494b46, hi #686d62  , sh #494b46                             # border inactive
 Colorset 4  fg #222020, bg #222020, hi #32302c, sh #222020                               # border active
-Colorset 5  fg #ececfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar/menu
+Colorset 5  fg #32302c, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # taskbar/menu
 Colorset 6  fg #434343, bg #434343, sh #434343                                           # taskbar border
-Colorset 7  fg #ececfe, bg #ffffff, TiledPixmap down.xpm, hi #606060, sh #474747         # menu active/hover
-Colorset 8  fg #ffffff, bg #003c3c, TiledPixmap pagerbg.xpm, hi #fffefe, sh #948c79      # pager inactive
-Colorset 9  fg #ececfe, bg #e4e3d5, TiledPixmap down.xpm, hi #606060, sh ##1f1f1f           # taskbar pressed/pager active
+Colorset 7  fg #e4e3d5, bg #fffefe, TiledPixmap down.xpm, hi #5c6057, sh #92998b         # menu active/hover
+Colorset 8  fg #fffefe, bg #003c3c, TiledPixmap pagerbg.xpm, hi #fffefe, sh #948c79      # pager inactive
+Colorset 9  fg #fffefe, bg #222020, TiledPixmap down.xpm, hi #92998b, sh #665f52           # taskbar pressed/pager active
 Colorset 10 fg #a9a1e1, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # RAM widget
 Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # CPU widget
 Colorset 12 Transparent
-Colorset 13 fg #ccccfe, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
-Colorset 14 fg #999999, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
+Colorset 13 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
+Colorset 14 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
 ###########
 
 # MenuStyles
@@ -670,7 +670,7 @@ DestroyModuleConfig KoolTray: *
 #*KoolTray: (4x1, Swallow RamCpu 'Module FvwmScript FvwmScript-RamCpu', Frame 0)
 
 DestroyModuleConfig KoolerTray: *
-*KoolerTray: Colorset 13hn
+*KoolerTray: Colorset 5
 *KoolerTray: Rows 1
 *KoolerTray: Columns 133
 *KoolerTray: Padding 1
