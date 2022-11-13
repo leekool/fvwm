@@ -68,6 +68,9 @@ AddToFunc   StartFunction
 + I FvwmEvent FvwmEvent-NewWindow
 + I Module FvwmMFL
 + I Module FvwmCommandS
++ I Module FvwmButtons FvwmStatusBar
++ I Module FvwmPager
++ I Module FvwmButtons KoolPager
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -200,14 +203,8 @@ Style "Volume Mixer" !Title, PositionPlacement -0 -33p, StaysOnTop, BorderColors
 Style "Top10" !Title, PositionPlacement -0 -33p, StaysOnTop, BorderColorset 4
 
 # fvwmbuttons
-Style FvwmButtons BorderWidth 1
-Style FvwmButtons BorderColorset 6
-Style FvwmButtons FixedPosition, FixedSize
-Style FvwmButtons NeverFocus
-Style FvwmButtons Sticky, StaysOnBottom
-Style FvwmButtons !Title, !Handles
-Style FvwmButtons UseDecor TaskbarBorder
-Style FvwmButtons WindowListSkip
+Style FvwmButtons BorderWidth 1, BorderColorset 6, FixedPosition, FixedSize, NeverFocus \
+      Sticky, StaysOnBottom, !Title, !Handles, UseDescor TaskbarBorder, WindowListSkip
 Style "KoolTray" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
       CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable, NeverFocus
 
@@ -603,6 +600,14 @@ Piperead "echo *FvwmButtons: Geometry \
 *FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/doc.png")
 *FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/xv.png")
 
+DestroyModuleConfig FvwmStatusBar: *
+*FvwmStatusBar: Geometry 200x500-5+5
+*FvwmStatusBar: Colorset 5
+*FvwmStatusBar: Columns 1
+*FvwmStatusBar: Rows 10
+*FvwmStatusBar: Frame 1
+*FvwmStatusBar: (1x1, Frame 1, Padding 2, Swallow KoolPager)
+
 # DestroyModuleConfig FvwmIconMan: *
 # *FvwmIconMan: Resolution desk
 # *FvwmIconMan: UseWinList true
@@ -688,17 +693,22 @@ Piperead "echo *FvwmButtons: Geometry \
 # *KoolerTray: (2x1, Frame 0)
 # *KoolerTray: (75x1, Padding 2, Swallow KoolTray "FvwmButtons KoolTray")
 
-# DestroyModuleConfig FvwmPager: *
-# *FvwmPager: Monitor $$[pointer.screen]
-# *FvwmPager: Colorset * 5
-# *FvwmPager: Font none
-# *FvwmPager: HilightColorset * 5  # sets background for some reason
-# *FvwmPager: NoSeparators
-# *FvwmPager: UseSkipList
-# *FvwmPager: ShapeLabels
-# *FvwmPager: Window3DBorders
-# *FvwmPager: WindowColorsets 8 9  # inactive active
+DestroyModuleConfig FvwmPager: *
+*FvwmPager: Monitor $$[pointer.screen]
+*FvwmPager: Colorset * 5
+*FvwmPager: Font none
+*FvwmPager: HilightColorset * 5  # sets background for some reason
+*FvwmPager: NoSeparators
+*FvwmPager: UseSkipList
+*FvwmPager: ShapeLabels
+*FvwmPager: Window3DBorders
+*FvwmPager: WindowColorsets 8 9  # inactive active
 
+DestroyModuleConfig KoolPager: *
+*KoolPager: Colorset 5
+*KoolPager: (Frame -1, Padding 2, Swallow FvwmPager)
+
+# FvwmEvent
 DestroyModuleConfig FvwmEvent: *
 *FvwmEvent: PassID
 *FvwmEvent: new_desk
