@@ -71,6 +71,7 @@ AddToFunc   StartFunction
 + I Module FvwmButtons FvwmStatusBar
 + I Module FvwmPager
 + I Module FvwmButtons KoolPager
++ I Module FvwmButtons KoolLoadCpu
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -587,7 +588,7 @@ DestroyModuleConfig EventNewDesk:*
 
 DestroyModuleConfig FvwmButtons: *
 Piperead "echo *FvwmButtons: Geometry \
-         735x105+$(expr $(currentscreenall.sh mouse | cut -d 'x' -f1) / 2 - 350)-0"
+         735x105+$(expr $(currentscreenall.sh mouse | cut -d 'x' -f1) / 2 - 350)-6"
 *FvwmButtons: Colorset 5
 *FvwmButtons: Columns 7
 *FvwmButtons: Rows 1
@@ -601,12 +602,13 @@ Piperead "echo *FvwmButtons: Geometry \
 *FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/xv.png")
 
 DestroyModuleConfig FvwmStatusBar: *
-*FvwmStatusBar: Geometry 200x500-5+5
+*FvwmStatusBar: Geometry 250x500-6+6
 *FvwmStatusBar: Colorset 5
 *FvwmStatusBar: Columns 1
 *FvwmStatusBar: Rows 10
 *FvwmStatusBar: Frame 1
 *FvwmStatusBar: (1x1, Frame 1, Padding 2, Swallow KoolPager)
+*FvwmStatusBar: (1x1, Frame 1, Padding 2, Swallow KoolLoadCpu)
 
 # DestroyModuleConfig FvwmIconMan: *
 # *FvwmIconMan: Resolution desk
@@ -683,15 +685,6 @@ DestroyModuleConfig FvwmStatusBar: *
 #     Action (Mouse 4) Exec amixer -D pulse set Master 5%+, \
 #     Action (Mouse 5) Exec amixer -D pulse set Master 5%-)
 
-# DestroyModuleConfig KoolerTray: *
-# *KoolerTray: Colorset 5
-# *KoolerTray: Rows 1
-# *KoolerTray: Columns 133
-# *KoolerTray: Padding 1
-# *KoolerTray: Frame -1
-# *KoolerTray: (56x1, Padding 2, Swallow Weather "FvwmScript FvwmScript-Weather")
-# *KoolerTray: (2x1, Frame 0)
-# *KoolerTray: (75x1, Padding 2, Swallow KoolTray "FvwmButtons KoolTray")
 
 DestroyModuleConfig FvwmPager: *
 *FvwmPager: Monitor $$[pointer.screen]
@@ -707,6 +700,11 @@ DestroyModuleConfig FvwmPager: *
 DestroyModuleConfig KoolPager: *
 *KoolPager: Colorset 5
 *KoolPager: (Frame -1, Padding 2, Swallow FvwmPager)
+
+DestroyModuleConfig KoolLoadCpu: *
+*KoolLoadCpu: Colorset 5
+*KoolLoadCpu: (Frame -1, Padding 2, Swallow LoadMeter "FvwmScript FvwmScript-LoadMeter")
+# *KoolTime: (Frame -1, Padding 2, Swallow DateTime "FvwmScript FvwmScript-KoolTime")
 
 # FvwmEvent
 DestroyModuleConfig FvwmEvent: *
