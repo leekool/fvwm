@@ -1,29 +1,37 @@
 WindowTitle {LoadMeter}
-WindowSize  250 100
+WindowSize  242 150
 Font "xft:Tamzen:pixelsize=15"
 
 Init
  Begin
   Set $Load = (GetOutput {exec ramcpu.sh cpu} 1 -1)
+  Set $Mem = (GetOutput {exec ramcpu.sh ram} 1 -1)
+  Set $Net = (GetOutput {exec net.sh} 1 -1)
   ChangeTitle 1 $Load
+  ChangeTitle 3 $Mem
+  ChangeTitle 5 $Net
 End
 
 PeriodicTasks
  Begin
   If (RemainderOfDiv (GetTime) 10)==0 Then
   Begin
-   Set $Load = (GetOutput {exec ramcpu.sh cpu} 1 -1)
-   ChangeTitle 1 $Load
+    Set $Load = (GetOutput {exec ramcpu.sh cpu} 1 -1)
+    Set $Mem = (GetOutput {exec ramcpu.sh ram} 1 -1)
+    Set $Net = (GetOutput {exec net.sh} 1 -1)
+    ChangeTitle 1 $Load
+    ChangeTitle 3 $Mem
+    ChangeTitle 5 $Net
   End
 End
 
 Widget 1
 Property
- Position 0 -2
- Size 250 15
+ Position 3 0
+ Size 100 15
  Font "xft:Tamzen:pixelsize=15"
  Type ItemDraw
- Flags NoReliefString NoFocus
+ Flags NoReliefString NoFocus Left
  Title {}
 Main
  Case message of
@@ -35,10 +43,54 @@ End
 Widget 2
 Property
  Position 0 15
- Size 250 50
+ Size 242 50
  Type SwallowExec
- Title {xosview}
- SwallowExec {exec xosview2}
+ Title {xosview-load}
+ SwallowExec {exec xosview2 -c /home/lee/.fvwm/scripts/xosview/load}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 3
+Property
+ Position 139 0
+ Size 100 15
+ Font "xft:Tamzen:pixelsize=15"
+ Type ItemDraw
+ Flags NoReliefString NoFocus Right
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 4
+Property
+ Position 0 80
+ Size 242 50
+ Type SwallowExec
+ Title {xosview-net}
+ SwallowExec {exec xosview2 -c /home/lee/.fvwm/scripts/xosview/net}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 5
+Property
+ Position 3 65
+ Size 242 15
+ Font "xft:Tamzen:pixelsize=15"
+ Type ItemDraw
+ Flags NoReliefString NoFocus Left
+ Title {}
 Main
  Case message of
   SingleClic :

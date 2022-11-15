@@ -1,0 +1,27 @@
+xosview*title: xosview-load
+xosview*pixmapName: /home/lee/.fvwm/taskbarbg.xpm
+xosview*captions: False
+xosview*background: #32302c
+xosview*foreground: black
+xosview*font: Tamzen
+xosview*labels: False
+xosview*mem: False
+xosview*cpu: False
+xosview*page: False
+xosview*net: False
+xosview*battery: False
+xosview*disk: False
+xosview*filesys: False
+xosview*RAID: False
+xosview*coretemp: False
+xosview*lmstemp: False
+xosview*tzone: False
+xosview*interrupts: False
+xosview*irqrate: False
+xosview*swap: False
+
+xosview*load: True
+xosview*loadIdleColor: #efefe7
+xosview*loadProcColor: #97ccaa
+xosview*loadWarnColor: #d3869b
+xosview*loadCritColor: #aba2ec

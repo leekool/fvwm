@@ -6,9 +6,9 @@ CPU=$(uptime | awk '{for (I=1;I<NF;I++) if ($I == "average:") {print substr($(I 
 
 case $1 in
     "ram")
-        echo $RAM
+        echo "MEM: $RAM%"
         ;;
     "cpu")
-        echo $CPU
+        echo "LOAD: $CPU"
         ;;
 esac

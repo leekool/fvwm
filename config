@@ -68,10 +68,11 @@ AddToFunc   StartFunction
 + I FvwmEvent FvwmEvent-NewWindow
 + I Module FvwmMFL
 + I Module FvwmCommandS
-+ I Module FvwmButtons FvwmStatusBar
++ I Module FvwmButtons FvwmSideBar
 + I Module FvwmPager
 + I Module FvwmButtons KoolPager
 + I Module FvwmButtons KoolLoadCpu
++ I Module FvwmButtons KoolTime
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -601,14 +602,15 @@ Piperead "echo *FvwmButtons: Geometry \
 *FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/doc.png")
 *FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/xv.png")
 
-DestroyModuleConfig FvwmStatusBar: *
-*FvwmStatusBar: Geometry 250x500-6+6
-*FvwmStatusBar: Colorset 5
-*FvwmStatusBar: Columns 1
-*FvwmStatusBar: Rows 10
-*FvwmStatusBar: Frame 1
-*FvwmStatusBar: (1x1, Frame 1, Padding 2, Swallow KoolPager)
-*FvwmStatusBar: (1x1, Frame 1, Padding 2, Swallow KoolLoadCpu)
+DestroyModuleConfig FvwmSideBar: *
+*FvwmSideBar: Geometry 250x500-6+6
+*FvwmSideBar: Colorset 5
+*FvwmSideBar: Columns 1
+*FvwmSideBar: Rows 5
+*FvwmSideBar: Frame 1
+*FvwmSideBar: (1x1, Frame 1, Padding 2, Swallow KoolTime)
+*FvwmSideBar: (1x2, Frame 1, Padding 2, Swallow KoolPager)
+*FvwmSideBar: (1x2, Frame 1, Padding 2, Swallow KoolLoadCpu)
 
 # DestroyModuleConfig FvwmIconMan: *
 # *FvwmIconMan: Resolution desk
@@ -704,7 +706,10 @@ DestroyModuleConfig KoolPager: *
 DestroyModuleConfig KoolLoadCpu: *
 *KoolLoadCpu: Colorset 5
 *KoolLoadCpu: (Frame -1, Padding 2, Swallow LoadMeter "FvwmScript FvwmScript-LoadMeter")
-# *KoolTime: (Frame -1, Padding 2, Swallow DateTime "FvwmScript FvwmScript-KoolTime")
+
+DestroyModuleConfig KoolTime: *
+*KoolTime: Colorset 5
+*KoolTime: (Frame -1, Padding 2, Swallow DateTime "FvwmScript FvwmScript-KoolTime")
 
 # FvwmEvent
 DestroyModuleConfig FvwmEvent: *
