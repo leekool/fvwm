@@ -5,7 +5,7 @@ Font "xft:Tamzen:pixelsize=15"
 
 Init
  Begin
-  Set $Weather = (GetOutput {exec test.sh} 1 -1)
+  Set $Weather = (GetOutput {exec weather.sh} 1 -1)
   ChangeTitle 1 $Weather
  End
 
@@ -13,7 +13,7 @@ PeriodicTasks
  Begin
   If (RemainderOfDiv (GetTime) 6000)==0 Then
   Begin
-   Set $Weather = (GetOutput {exec test.sh} 1 -1)
+   Set $Weather = (GetOutput {exec weather.sh} 1 -1)
    ChangeTitle 1 $Weather
   End
  End

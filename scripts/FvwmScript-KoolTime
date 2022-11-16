@@ -1,33 +1,50 @@
 WindowTitle {DateTime}
-WindowSize  50 26
-Font "xft:Tamzen:pixelsize=15"
+WindowSize  242 80
+Font "xft:Tamzen:pixelsize=9"
 
 Init
  Begin
-  Set $Time = (GetOutput {exec date "+%H:%M"} 1 -1)
-  Set $Date = (GetOutput {exec date "+%d %b"} 1 -1)
+  Set $Time = (GetOutput {exec time.sh} 1 -1)
+  Set $Date = (GetOutput {exec date "+%d %^b"} 1 -1)
+  Set $Weather = (GetOutput {exec weather.sh} 1 -1)
 
-  ChangeTitle 1 $Time
-  ChangeTitle 2 $Date
+  ChangeTitle 1 (StrCopy $Time 0 50)
+  ChangeTitle 2 (StrCopy $Time 51 100)
+  ChangeTitle 3 (StrCopy $Time 101 150)
+  ChangeTitle 4 (StrCopy $Time 151 200)
+  ChangeTitle 5 (StrCopy $Time 201 250)
+
+  ChangeTitle 6 $Date
+  ChangeTitle 7 $Weather
 End
 
 PeriodicTasks
  Begin
   If (RemainderOfDiv (GetTime) 60)==0 Then
   Begin
-   Set $Time = (GetOutput {exec date "+%H:%M"} 1 -1)
-   Set $Date = (GetOutput {exec date "+%d %b"} 1 -1)
+   Set $Time = (GetOutput {exec time.sh} 1 -1)
 
-   ChangeTitle 1 $Time
-   ChangeTitle 2 $Date
+   ChangeTitle 1 (StrCopy $Time 0 50)
+   ChangeTitle 2 (StrCopy $Time 51 100)
+   ChangeTitle 3 (StrCopy $Time 101 150)
+   ChangeTitle 4 (StrCopy $Time 151 200)
+   ChangeTitle 5 (StrCopy $Time 201 250)
+  End
+
+  If (RemainderOfDiv (GetTime) 18000)==0 Then
+  Begin
+   Set $Date = (GetOutput {exec date "+%d %^b"} 1 -1)
+   Set $Weather = (GetOutput {exec weather.sh} 1 -1)
+
+   ChangeTitle 6 $Date
+   ChangeTitle 7 $Weather
   End
 End
 
 Widget 1
 Property
- Position 0 -2
- Size 50 15
- Font "xft:Tamzen:pixelsize=13"
+ Position 6 0
+ Size 242 10
  Type ItemDraw
  Flags NoReliefString NoFocus
  Title {}
@@ -40,11 +57,82 @@ End
 
 Widget 2
 Property
- Position 0 10
- Size 50 15
- Font "xft:Tamzen:pixelsize=13"
+ Position 6 10
+ Size 242 10
  Type ItemDraw
- Flags NoReliefString
+ Flags NoReliefString NoFocus
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 3
+Property
+ Position 6 20
+ Size 242 10
+ Type ItemDraw
+ Flags NoReliefString NoFocus
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 4
+Property
+ Position 6 30
+ Size 242 10
+ Type ItemDraw
+ Flags NoReliefString NoFocus
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 5
+Property
+ Position 6 40
+ Size 242 10
+ Type ItemDraw
+ Flags NoReliefString NoFocus
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 6
+Property
+ Position 0 58
+ Size 121 15
+ Font "xft:Tamzen:style=medium:pixelsize=15"
+ Type ItemDraw
+ Flags NoReliefString NoFocus Left
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 7
+Property
+ Position 121 58
+ Size 121 15
+ Font "xft:Tamzen:style=medium:pixelsize=15"
+ Type ItemDraw
+ Flags NoReliefString NoFocus Right
  Title {}
 Main
  Case message of
