@@ -1,11 +1,11 @@
 WindowTitle {DateTime}
-WindowSize  242 80
+WindowSize  232 80
 Font "xft:Tamzen:pixelsize=9"
 
 Init
  Begin
   Set $Time = (GetOutput {exec time.sh} 1 -1)
-  Set $Date = (GetOutput {exec date "+%d %^b"} 1 -1)
+  Set $Date = (GetOutput {exec date "+%d %^B"} 1 -1)
   Set $Weather = (GetOutput {exec weather.sh} 1 -1)
 
   ChangeTitle 1 (StrCopy $Time 0 50)
@@ -43,7 +43,7 @@ End
 
 Widget 1
 Property
- Position 6 0
+ Position 0 12
  Size 242 10
  Type ItemDraw
  Flags NoReliefString NoFocus
@@ -57,7 +57,7 @@ End
 
 Widget 2
 Property
- Position 6 10
+ Position 0 22
  Size 242 10
  Type ItemDraw
  Flags NoReliefString NoFocus
@@ -71,7 +71,7 @@ End
 
 Widget 3
 Property
- Position 6 20
+ Position 0 32
  Size 242 10
  Type ItemDraw
  Flags NoReliefString NoFocus
@@ -85,7 +85,7 @@ End
 
 Widget 4
 Property
- Position 6 30
+ Position 0 42
  Size 242 10
  Type ItemDraw
  Flags NoReliefString NoFocus
@@ -99,7 +99,7 @@ End
 
 Widget 5
 Property
- Position 6 40
+ Position 0 52
  Size 242 10
  Type ItemDraw
  Flags NoReliefString NoFocus
@@ -113,8 +113,8 @@ End
 
 Widget 6
 Property
- Position 0 58
- Size 121 15
+ Position 2 0
+ Size 116 10
  Font "xft:Tamzen:style=medium:pixelsize=15"
  Type ItemDraw
  Flags NoReliefString NoFocus Left
@@ -128,8 +128,8 @@ End
 
 Widget 7
 Property
- Position 121 58
- Size 121 15
+ Position 116 68
+ Size 116 10
  Font "xft:Tamzen:style=medium:pixelsize=15"
  Type ItemDraw
  Flags NoReliefString NoFocus Right
