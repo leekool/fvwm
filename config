@@ -74,6 +74,14 @@ AddToFunc   StartFunction
 + I Module FvwmButtons KoolLoadCpu
 + I Module FvwmButtons KoolTime
 
++ I Module FvwmButtons IconPc
++ I Module FvwmButtons IconRecycle
++ I Module FvwmButtons IconMail
++ I Module FvwmButtons IconShell
++ I Module FvwmButtons IconEye
++ I Module FvwmButtons IconDoc
++ I Module FvwmButtons IconXv
+
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
 AddToFunc RaiseMoveX
@@ -287,6 +295,7 @@ Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #9
 Colorset 12 Transparent
 Colorset 13 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
 Colorset 14 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
+Colorset 15 fg #32302c, bg #999999, TiledPixmap iconbg.xpm, hi #fffefe, sh #948c79    # icons
 ###########
 
 # MenuStyles
@@ -457,6 +466,7 @@ Silent Key O A 4 ThisWindow MoveOther
 
 Silent Key R A 4 Exec rofi -show run
 Silent Key F4 A M Close
+Silent Key C A 4S Close
 
 Silent Key S A 4S Exec screenshotssh.sh window
 Silent Key S A 4 Exec screenshotssh.sh box
@@ -583,27 +593,56 @@ DestroyModuleConfig EventNewDesk:*
 #
 # FvwmForm is a module that can be used to build a GUI
 # form. Used with fvwm-menu-desktop-config.fpl.
-# This sets the default colorsets.
+# This sets the default col
 *FvwmFormDefault: Colorset 0
 *FvwmFormDefault: ItemColorset 0
 
 DestroyModuleConfig FvwmButtons: *
 Piperead "echo *FvwmButtons: Geometry \
-         735x105+$(expr $(currentscreenall.sh mouse | cut -d 'x' -f1) / 2 - 350)-6"
+         763x109+$(expr $(currentscreenall.sh mouse | cut -d 'x' -f1) / 2 - 350)-8"
 *FvwmButtons: Colorset 5
 *FvwmButtons: Columns 7
 *FvwmButtons: Rows 1
 *FvwmButtons: Frame 1
-*FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/pc.png")
-*FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/recycle.png")
-*FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/mail.png")
-*FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/shell.png")
-*FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/eye.png")
-*FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/doc.png")
-*FvwmButtons: (Frame 1, Padding 2, Icon "$[FVWM_USERDIR]/images/xv.png")
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconPc)
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconRecycle)
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconMail)
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconShell)
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconEye)
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconDoc)
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconXv)
+
+DestroyModuleConfig IconPc: *
+*IconPc: Colorset 15
+*IconPc: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/pc.png")
+
+DestroyModuleConfig IconRecycle: *
+*IconRecycle: Colorset 15
+*IconRecycle: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/recycle.png")
+
+DestroyModuleConfig IconMail: *
+*IconMail: Colorset 15
+*IconMail: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/mail.png")
+
+DestroyModuleConfig IconShell: *
+*IconShell: Colorset 15
+*IconShell: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/shell.png")
+
+DestroyModuleConfig IconEye: *
+*IconEye: Colorset 15
+*IconEye: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/eye.png")
+
+DestroyModuleConfig IconDoc: *
+*IconDoc: Colorset 15
+*IconDoc: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/doc.png")
+
+DestroyModuleConfig IconXv: *
+*IconXv: Colorset 15
+*IconXv: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/xv.png")
+
 
 DestroyModuleConfig FvwmSideBar: *
-*FvwmSideBar: Geometry 250x500-6+6
+*FvwmSideBar: Geometry 250x500-8+8
 *FvwmSideBar: Colorset 5
 *FvwmSideBar: Columns 1
 *FvwmSideBar: Rows 5
@@ -720,10 +759,10 @@ DestroyModuleConfig FvwmEvent: *
 
 # starting size/position for certain windows
 DestroyModuleConfig StartLeft: *
-*StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p 0 0'"
+*StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo windowmovement.sh left'"
 
 DestroyModuleConfig StartRight: *
-*StartRight: add_window "ThisWindow ("Mozilla*") PipeRead 'echo ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0'"
+*StartRight: add_window "ThisWindow ("Mozilla*") PipeRead 'echo windowmovement.sh right'"
 
 # has to run twice to work for some reason (fix)
 DestroyModuleConfig StartOther: *

@@ -1,0 +1,8 @@
+/* XPM */
+static char * iconbg_xpm[] = {
+"3 3 2 1",
+"  s bottomShadowColor m black c #fffefe",
+". s background m white c #efefe7",
+"   ",
+" . ",
+"   "};

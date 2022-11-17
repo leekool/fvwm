@@ -24,6 +24,10 @@ else
     size="half_height"
 fi
 
+gap=8
+gap2=$((gap * 2))
+gap34=$((gap + gap / 2))
+
 
 if      [ $screen_width -gt $screen_height ]; then
     case $1 in
@@ -44,10 +48,12 @@ if      [ $screen_width -gt $screen_height ]; then
             fi
             ;;
         "left")
-            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p 0 0"
+            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2 - $gap34)p \
+                                   $(expr $(screenheighttaskbar.sh) - $gap2)p ${gap}p ${gap}p"
             ;;
         "right")
-            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2)p $(screenheighttaskbar.sh)p -0 0"
+            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2 - $gap34)p \
+                                   $(expr $(screenheighttaskbar.sh) - $gap2)p -${gap}p ${gap}p"
             ;;
     esac
 else
