@@ -1,7 +1,7 @@
 xosview*title: xosview-load
 xosview*pixmapName: /home/lee/.fvwm/taskbarbg.xpm
 xosview*captions: False
-xosview*background: #32302c
+xosview*background: black
 xosview*foreground: black
 xosview*font: Tamzen
 xosview*labels: False
@@ -21,7 +21,7 @@ xosview*irqrate: False
 xosview*swap: False
 
 xosview*load: True
-xosview*loadIdleColor: #efefe7
+xosview*loadIdleColor: black
 xosview*loadProcColor: #97ccaa
 xosview*loadWarnColor: #d3869b
 xosview*loadCritColor: #aba2ec

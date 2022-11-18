@@ -23,6 +23,6 @@ xosview*irqrate: False
 xosview*swap: False
 
 xosview*net: True
-xosview*netBackground: #efefe7
+xosview*netBackground: black
 xosview*netOutColor: #d3869b
 xosview*netInColor: #97ccaa

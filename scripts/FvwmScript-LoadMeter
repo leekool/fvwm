@@ -1,5 +1,5 @@
 WindowTitle {LoadMeter}
-WindowSize  242 150
+WindowSize  242 170
 Font "xft:Tamzen:pixelsize=15"
 
 Init
@@ -7,23 +7,33 @@ Init
   Set $Load = (GetOutput {exec ramcpu.sh cpu} 1 -1)
   Set $Mem = (GetOutput {exec ramcpu.sh ram} 1 -1)
   Set $Net = (GetOutput {exec net.sh} 1 -1)
+  Set $Capacity = (GetOutput {exec battery.sh capacity} 1 -1)
+  Set $Status = (GetOutput {exec battery.sh status} 1 -1)
+
   ChangeTitle 1 $Load
   ChangeTitle 3 $Mem
   ChangeTitle 5 $Net
-End
+  ChangeTitle 6 $Capacity
+  ChangeTitle 7 $Status
+ End
 
 PeriodicTasks
  Begin
   If (RemainderOfDiv (GetTime) 10)==0 Then
   Begin
-    Set $Load = (GetOutput {exec ramcpu.sh cpu} 1 -1)
-    Set $Mem = (GetOutput {exec ramcpu.sh ram} 1 -1)
-    Set $Net = (GetOutput {exec net.sh} 1 -1)
-    ChangeTitle 1 $Load
-    ChangeTitle 3 $Mem
-    ChangeTitle 5 $Net
+   Set $Load = (GetOutput {exec ramcpu.sh cpu} 1 -1)
+   Set $Mem = (GetOutput {exec ramcpu.sh ram} 1 -1)
+   Set $Net = (GetOutput {exec net.sh} 1 -1)
+   Set $Capacity = (GetOutput {exec battery.sh capacity} 1 -1)
+   Set $Status = (GetOutput {exec battery.sh status} 1 -1)
+
+   ChangeTitle 1 $Load
+   ChangeTitle 3 $Mem
+   ChangeTitle 5 $Net
+   ChangeTitle 6 $Capacity
+   ChangeTitle 7 $Status
   End
-End
+ End
 
 Widget 1
 Property
@@ -90,6 +100,36 @@ Property
  Font "xft:Tamzen:pixelsize=15"
  Type ItemDraw
  Flags NoReliefString NoFocus Left
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 6
+Property
+ Position 3 130
+ Size 100 15
+ Font "xft:Tamzen:pixelsize=15"
+ Type ItemDraw
+ Flags NoReliefString NoFocus Left
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+
+Widget 7
+Property
+ Position 139 130
+ Size 100 15
+ Font "xft:Tamzen:pixelsize=15"
+ Type ItemDraw
+ Flags NoReliefString NoFocus Right
  Title {}
 Main
  Case message of
