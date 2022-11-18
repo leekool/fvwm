@@ -1,13 +1,18 @@
 #!/bin/bash
 
-# gets dimensions of monitor the active window is on
+# window gap
+gap=8
+gap200=$((gap * 2))
+gap75=$((gap + gap / 2))
+gap50=$((gap / 2))
+
+# get dimensions of monitor the active window is on
 screen=($(screenheighttaskbar2.sh))
-#screen=($(currentscreenall.sh window | awk 'BEGIN {FS="x"} {print $1, $2}'))
 
 screen_width=${screen[0]}
 screen_height=${screen[1]}
 
-# gets info related to active window
+# get position/dimensions of active window
 info=($(xwininfo -id $(xdotool getactivewindow) | awk 'BEGIN {FS=":"} {print $2}'))
 
 xpos=${info[2]}
@@ -24,16 +29,13 @@ else
     size="half_height"
 fi
 
-gap=8
-gap2=$((gap * 2))
-gap34=$((gap + gap / 2))
 
 
 if      [ $screen_width -gt $screen_height ]; then
     case $1 in
         "up")
             if      [ "$size" == "half_width_full_height" ]; then
-                echo "Resize frame keep $(($screen_height / 2))p"
+                echo "Resize frame keep $(($screen_height / 2 - $gap75))p"
             else
                 echo "LeeMaximize"
             fi
@@ -42,18 +44,18 @@ if      [ $screen_width -gt $screen_height ]; then
             if      [ "$ypos" -lt 30 ] && [ "$size" == "half_height" ]; then
                 echo "Move keep $(($screen_height / 2))p"
             elif    [ "$size" == "half_width_full_height" ]; then
-                echo "ResizeMove frame keep $(($screen_height / 2))p keep $(($screen_height / 2))p"
+                echo "ResizeMove frame keep $(($screen_height / 2 - $gap75))p keep $(($screen_height / 2 + $gap50))p"
             else
                 echo "LeeIconify"
             fi
             ;;
         "left")
-            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2 - $gap34)p \
-                                   $(expr $(screenheighttaskbar.sh) - $gap2)p ${gap}p ${gap}p"
+            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2 - $gap75)p \
+                                   $(expr $(screenheighttaskbar.sh) - $gap200)p ${gap}p ${gap}p"
             ;;
         "right")
-            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2 - $gap34)p \
-                                   $(expr $(screenheighttaskbar.sh) - $gap2)p -${gap}p ${gap}p"
+            echo "ResizeMove frame $(expr $(currentscreenall.sh window | cut -d 'x' -f1) / 2 - $gap75)p \
+                                   $(expr $(screenheighttaskbar.sh) - $gap200)p -${gap}p ${gap}p"
             ;;
     esac
 else

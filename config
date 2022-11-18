@@ -295,7 +295,8 @@ Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #9
 Colorset 12 Transparent
 Colorset 13 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
 Colorset 14 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
-Colorset 15 fg #32302c, bg #999999, TiledPixmap iconbg.xpm, hi #fffefe, sh #948c79    # icons
+Colorset 15 fg #32302c, bg #999999, TiledPixmap iconbg.xpm, hi #fffefe, sh #fffefe       # icons
+Colorset 16 fg #32302c, bg #999999, TiledPixmap iconbg-xv.xpm, hi #fffefe, sh #948c79       # icons
 ###########
 
 # MenuStyles
@@ -614,31 +615,42 @@ Piperead "echo *FvwmButtons: Geometry \
 
 DestroyModuleConfig IconPc: *
 *IconPc: Colorset 15
-*IconPc: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/pc.png")
+*IconPc: PressColorset 5
+*IconPc: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/pc.png" \
+         Action (Mouse 1) Exec thunar)
 
 DestroyModuleConfig IconRecycle: *
 *IconRecycle: Colorset 15
-*IconRecycle: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/recycle.png")
+*IconRecycle: PressColorset 5
+*IconRecycle: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/recycle.png" \
+         Action (Mouse 1) Exec nicotine)
 
 DestroyModuleConfig IconMail: *
 *IconMail: Colorset 15
-*IconMail: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/mail.png")
+*IconMail: PressColorset 5
+*IconMail: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/mail.png" \
+           Action (Mouse 1) Exec alacritty -e neomutt)
 
 DestroyModuleConfig IconShell: *
 *IconShell: Colorset 15
-*IconShell: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/shell.png")
+*IconShell: PressColorset 5
+*IconShell: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/shell.png" \
+           Action (Mouse 1) Exec alacritty)
 
 DestroyModuleConfig IconEye: *
 *IconEye: Colorset 15
-*IconEye: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/eye.png")
+*IconEye: PressColorset 5
+*IconEye: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/eye.png" \
+          Action (Mouse 1) Exec alacritty -e htop)
 
 DestroyModuleConfig IconDoc: *
 *IconDoc: Colorset 15
-*IconDoc: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/doc.png")
+*IconDoc: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/doc.png")
 
 DestroyModuleConfig IconXv: *
-*IconXv: Colorset 15
-*IconXv: (Frame 0, Padding 0, Icon "$[FVWM_USERDIR]/images/xv.png")
+*IconXv: Colorset 16
+*IconXv: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/xv.png" \
+         Action (Mouse 1) Exec gimp)
 
 
 DestroyModuleConfig FvwmSideBar: *
@@ -759,10 +771,10 @@ DestroyModuleConfig FvwmEvent: *
 
 # starting size/position for certain windows
 DestroyModuleConfig StartLeft: *
-*StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo windowmovement.sh left'"
+*StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo $(windowmovement.sh left)'"
 
 DestroyModuleConfig StartRight: *
-*StartRight: add_window "ThisWindow ("Mozilla*") PipeRead 'echo windowmovement.sh right'"
+*StartRight: add_window "ThisWindow ("Mozilla*") PipeRead 'echo $(windowmovement.sh right)'"
 
 # has to run twice to work for some reason (fix)
 DestroyModuleConfig StartOther: *
