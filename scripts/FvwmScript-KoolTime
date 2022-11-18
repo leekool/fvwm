@@ -113,7 +113,7 @@ End
 
 Widget 6
 Property
- Position 2 0
+ Position 2 -1
  Size 116 10
  Font "xft:Tamzen:style=medium:pixelsize=15"
  Type ItemDraw
@@ -128,7 +128,7 @@ End
 
 Widget 7
 Property
- Position 116 68
+ Position 116 69
  Size 116 10
  Font "xft:Tamzen:style=medium:pixelsize=15"
  Type ItemDraw

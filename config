@@ -10,7 +10,7 @@
 #  | '--------------' || '--------------' || '--------------' |
 #   '----------------'  '----------------'  '----------------'
 #
-#  This config file is organized as follows:
+#  This config file isn't organised
 #
 #    1: Functions
 #    2: Styles
@@ -201,7 +201,7 @@ SetAnimation  10  -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 Style ConfirmQuit !Title, PositionPlacement Center, WindowListSkip, Layer 6
 Style FvwmIdent WindowListSkip
 Style Steam HandleWidth 0, !Title
-6Style valheim.x86_64 HandleWidth 0, !Title
+Style valheim.x86_64 HandleWidth 0, !Title
 Style feh !Title, PositionPlacement Center, NoPPosition, NoUSPosition
 Style emacs-run-launcher !Title, PositionPlacement Center, NoPPosition, NoUSPosition
 Style mpv !Title, HandleWidth 0, PositionPlacement -0 50-50w, StaysOnTop
@@ -289,14 +289,15 @@ Colorset 5  fg #32302c, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #9
 Colorset 6  fg #434343, bg #434343, sh #434343                                           # taskbar border
 Colorset 7  fg #e4e3d5, bg #fffefe, TiledPixmap down.xpm, hi #5c6057, sh #92998b         # menu active/hover
 Colorset 8  fg #fffefe, bg #003c3c, TiledPixmap pagerbg.xpm, hi #fffefe, sh #948c79      # pager inactive
-Colorset 9  fg #fffefe, bg #222020, TiledPixmap down.xpm, hi #92998b, sh #665f52           # taskbar pressed/pager active
+Colorset 9  fg #fffefe, bg #222020, TiledPixmap down.xpm, hi #92998b, sh #665f52         # taskbar pressed/pager active
 Colorset 10 fg #a9a1e1, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # RAM widget
 Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # CPU widget
 Colorset 12 Transparent
 Colorset 13 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
 Colorset 14 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
 Colorset 15 fg #32302c, bg #999999, TiledPixmap iconbg.xpm, hi #fffefe, sh #fffefe       # icons
-Colorset 16 fg #32302c, bg #999999, TiledPixmap iconbg-xv.xpm, hi #fffefe, sh #948c79       # icons
+Colorset 16 fg #32302c, bg #999999, TiledPixmap iconbg-xv.xpm, hi #fffefe, sh #948c79    # vx icon
+Colorset 17 fg #ececfe, bg #e4e3d5, TiledPixmap pageractive.xpm, hi #606060, sh #665f52  # pager active
 ###########
 
 # MenuStyles
@@ -654,49 +655,48 @@ DestroyModuleConfig IconXv: *
 *IconXv: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/xv.png" \
          Action (Mouse 1) Exec gimp)
 
-
 DestroyModuleConfig FvwmSideBar: *
 *FvwmSideBar: Geometry 250x500-8+8
 *FvwmSideBar: Colorset 5
 *FvwmSideBar: Columns 1
-*FvwmSideBar: Rows 5
+*FvwmSideBar: Rows 40
 *FvwmSideBar: Frame 1
-*FvwmSideBar: (1x1, Frame 1, Padding 2, Swallow KoolTime)
-*FvwmSideBar: (1x2, Frame 1, Padding 2, Swallow KoolPager)
-*FvwmSideBar: (1x2, Frame 1, Padding 2, Swallow KoolLoadCpu)
+*FvwmSideBar: (1x9, Frame 1, Padding 2, Swallow KoolTime)
+*FvwmSideBar: (1x16, Frame 1, Padding 2, Swallow KoolPager)
+*FvwmSideBar: (1x15, Frame 1, Padding 2, Swallow KoolLoadCpu)
 
-DestroyModuleConfig FvwmIconMan: *
-*FvwmIconMan: Resolution desk
-*FvwmIconMan: UseWinList true
-*FvwmIconMan: Action Mouse 0 A ret
-*FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
-*FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
-*FvwmIconMan: Colorset 12
-*FvwmIconMan: IconColorset 14
-*FvwmIconMan: IconAndSelectColorset 13
-*FvwmIconMan: ButtonGeometry 1x22
-*FvwmIconMan: DrawIcons always
-*FvwmIconMan: FocusAndSelectButton down
-*FvwmIconMan: PlainColorset 5
-*FvwmIconMan: FocusAndSelectColorset 9
-*FvwmIconMan: FocusButton down
-*FvwmIconMan: FocusColorset 9
-*FvwmIconMan: SelectColorset 13
-*FvwmIconMan: ReliefThickness 1
-*FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
-*FvwmIconMan: Format "%i"
-*FvwmIconMan: IconAndSelectButton flat
-*FvwmIconMan: IconButton flat
-*FvwmIconMan: ManagerGeometry 1x1
-*FvwmIconMan: MaxButtonWidthByColumns 6
-*FvwmIconMan: PlainButton flat
-*FvwmIconMan: SelectButton flat
-*FvwmIconMan: ShowTransient false
-*FvwmIconMan: Sort id
-*FvwmIconMan: Title ""
-*FvwmIconMan: TitleButton flat
-*FvwmIconMan: DontShow "Volume Mixer"
-*FvwmIconMan: DontShow "DateTime"
+# DestroyModuleConfig FvwmIconMan: *
+# *FvwmIconMan: Resolution desk
+# *FvwmIconMan: UseWinList true
+# *FvwmIconMan: Action Mouse 0 A ret
+# *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
+# *FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
+# *FvwmIconMan: Colorset 12
+# *FvwmIconMan: IconColorset 14
+# *FvwmIconMan: IconAndSelectColorset 13
+# *FvwmIconMan: ButtonGeometry 1x22
+# *FvwmIconMan: DrawIcons always
+# *FvwmIconMan: FocusAndSelectButton down
+# *FvwmIconMan: PlainColorset 5
+# *FvwmIconMan: FocusAndSelectColorset 9
+# *FvwmIconMan: FocusButton down
+# *FvwmIconMan: FocusColorset 9
+# *FvwmIconMan: SelectColorset 13
+# *FvwmIconMan: ReliefThickness 1
+# *FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
+# *FvwmIconMan: Format "%i"
+# *FvwmIconMan: IconAndSelectButton flat
+# *FvwmIconMan: IconButton flat
+# *FvwmIconMan: ManagerGeometry 1x1
+# *FvwmIconMan: MaxButtonWidthByColumns 6
+# *FvwmIconMan: PlainButton flat
+# *FvwmIconMan: SelectButton flat
+# *FvwmIconMan: ShowTransient false
+# *FvwmIconMan: Sort id
+# *FvwmIconMan: Title ""
+# *FvwmIconMan: TitleButton flat
+# *FvwmIconMan: DontShow "Volume Mixer"
+# *FvwmIconMan: DontShow "DateTime"
 
 # DestroyModuleConfig FvwmButtons: *
 # PipeRead "echo *FvwmButtons: Geometry \
@@ -750,7 +750,7 @@ DestroyModuleConfig FvwmPager: *
 *FvwmPager: UseSkipList
 *FvwmPager: ShapeLabels
 *FvwmPager: Window3DBorders
-*FvwmPager: WindowColorsets 8 9  # inactive active
+*FvwmPager: WindowColorsets 8 17  # inactive active
 
 DestroyModuleConfig KoolPager: *
 *KoolPager: Colorset 5
