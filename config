@@ -69,12 +69,6 @@ AddToFunc   StartFunction
 + I Module FvwmMFL
 + I Module FvwmCommandS
 + I Module FvwmButtons FvwmSideBar
-+ I Module FvwmPager
-+ I Module FvwmButtons KoolPager
-+ I Module FvwmButtons KoolLoadCpu
-+ I Module FvwmButtons KoolTime
-
-+ I Module FvwmButtons IconPc
 + I Module FvwmButtons IconRecycle
 + I Module FvwmButtons IconMail
 + I Module FvwmButtons IconShell
@@ -657,14 +651,15 @@ DestroyModuleConfig IconXv: *
          Action (Mouse 1) Exec gimp)
 
 DestroyModuleConfig FvwmSideBar: *
-*FvwmSideBar: Geometry 250x500-8+8
+*FvwmSideBar: Geometry 250x675-8+8
 *FvwmSideBar: Colorset 5
 *FvwmSideBar: Columns 1
-*FvwmSideBar: Rows 40
+*FvwmSideBar: Rows 80
 *FvwmSideBar: Frame 1
-*FvwmSideBar: (1x9, Frame 1, Padding 2, Swallow KoolTime)
-*FvwmSideBar: (1x16, Frame 1, Padding 2, Swallow KoolPager)
-*FvwmSideBar: (1x15, Frame 1, Padding 2, Swallow KoolLoadCpu)
+*FvwmSideBar: (1x12, Frame 1, Padding 2, Swallow KoolTime "Module FvwmButtons KoolTime")
+*FvwmSideBar: (1x25, Frame 1, Padding 2, Swallow KoolPager "Module FvwmButtons KoolPager")
+*FvwmSideBar: (1x20, Frame 1, Padding 2, Swallow KoolLoadCpu "Module FvwmButtons KoolLoadCpu")
+*FvwmSideBar: (1x23, Frame 1, Padding 2, Swallow KoolIconMan "Module FvwmButtons KoolIconMan")
 
 # DestroyModuleConfig FvwmIconMan: *
 # *FvwmIconMan: Resolution desk
@@ -698,6 +693,38 @@ DestroyModuleConfig FvwmSideBar: *
 # *FvwmIconMan: TitleButton flat
 # *FvwmIconMan: DontShow "Volume Mixer"
 # *FvwmIconMan: DontShow "DateTime"
+
+DestroyModuleConfig FvwmIconMan: *
+*FvwmIconMan: Resolution desk
+*FvwmIconMan: UseWinList true
+*FvwmIconMan: ManagerGeometry 1x50+242+22
+*FvwmIconMan: ButtonGeometry 1x22
+*FvwmIconMan: Action Mouse 0 A ret
+*FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
+*FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
+*FvwmIconMan: Colorset 12
+*FvwmIconMan: IconColorset 14
+*FvwmIconMan: IconAndSelectColorset 13
+*FvwmIconMan: DrawIcons always
+*FvwmIconMan: FocusAndSelectButton down
+*FvwmIconMan: PlainColorset 5
+*FvwmIconMan: FocusAndSelectColorset 9
+*FvwmIconMan: FocusButton down
+*FvwmIconMan: FocusColorset 9
+*FvwmIconMan: SelectColorset 13
+*FvwmIconMan: ReliefThickness 1
+*FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
+*FvwmIconMan: Format "%i"
+*FvwmIconMan: IconAndSelectButton flat
+*FvwmIconMan: IconButton flat
+*FvwmIconMan: PlainButton flat
+*FvwmIconMan: SelectButton flat
+*FvwmIconMan: ShowTransient false
+*FvwmIconMan: Sort id
+*FvwmIconMan: Title ""
+*FvwmIconMan: TitleButton flat
+*FvwmIconMan: DontShow "Volume Mixer"
+*FvwmIconMan: DontShow "DateTime"
 
 # DestroyModuleConfig FvwmButtons: *
 # PipeRead "echo *FvwmButtons: Geometry \
@@ -755,7 +782,7 @@ DestroyModuleConfig FvwmPager: *
 
 DestroyModuleConfig KoolPager: *
 *KoolPager: Colorset 5
-*KoolPager: (Frame -1, Padding 2, Swallow FvwmPager)
+*KoolPager: (Frame -1, Padding 2, Swallow FvwmPager "Module FvwmPager")
 
 DestroyModuleConfig KoolLoadCpu: *
 *KoolLoadCpu: Colorset 5
@@ -765,6 +792,9 @@ DestroyModuleConfig KoolTime: *
 *KoolTime: Colorset 5
 *KoolTime: (Frame -1, Padding 2, Swallow DateTime "FvwmScript FvwmScript-KoolTime")
 
+DestroyModuleConfig KoolIconMan: *
+*KoolIconMan: Colorset 5
+*KoolIconMan: (Frame -1, Padding 2, Swallow (Respawn) FvwmIconMan "Module FvwmIconMan")
 # FvwmEvent
 DestroyModuleConfig FvwmEvent: *
 *FvwmEvent: PassID
