@@ -69,6 +69,7 @@ AddToFunc   StartFunction
 + I Module FvwmMFL
 + I Module FvwmCommandS
 + I Module FvwmButtons FvwmSideBar
++ I Module FvwmButtons IconPc
 + I Module FvwmButtons IconRecycle
 + I Module FvwmButtons IconMail
 + I Module FvwmButtons IconShell
