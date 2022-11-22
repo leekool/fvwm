@@ -69,13 +69,6 @@ AddToFunc   StartFunction
 + I Module FvwmMFL
 + I Module FvwmCommandS
 + I Module FvwmButtons FvwmSideBar
-+ I Module FvwmButtons IconPc
-+ I Module FvwmButtons IconRecycle
-+ I Module FvwmButtons IconMail
-+ I Module FvwmButtons IconShell
-+ I Module FvwmButtons IconEye
-+ I Module FvwmButtons IconDoc
-+ I Module FvwmButtons IconXv
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -602,13 +595,13 @@ Piperead "echo *FvwmButtons: Geometry \
 *FvwmButtons: Columns 7
 *FvwmButtons: Rows 1
 *FvwmButtons: Frame 1
-*FvwmButtons: (Frame 1, Padding 2, Swallow IconPc)
-*FvwmButtons: (Frame 1, Padding 2, Swallow IconRecycle)
-*FvwmButtons: (Frame 1, Padding 2, Swallow IconMail)
-*FvwmButtons: (Frame 1, Padding 2, Swallow IconShell)
-*FvwmButtons: (Frame 1, Padding 2, Swallow IconEye)
-*FvwmButtons: (Frame 1, Padding 2, Swallow IconDoc)
-*FvwmButtons: (Frame 1, Padding 2, Swallow IconXv)
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconPc "Module FvwmButtons IconPc")
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconRecycle "Module FvwmButtons IconRecycle")
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconMail "Module FvwmButtons IconMail")
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconShell "Module FvwmButtons IconShell")
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconEye "Module FvwmButtons IconEye")
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconDoc "Module FvwmButtons IconDoc")
+*FvwmButtons: (Frame 1, Padding 2, Swallow IconXv "Module FvwmButtons IconXv")
 
 DestroyModuleConfig IconPc: *
 *IconPc: Colorset 15
