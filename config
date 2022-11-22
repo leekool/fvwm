@@ -324,7 +324,9 @@ PipeRead "fvwm-menu-desktop -e"
 
 DestroyFunc EmacsStart
 AddToFunc EmacsStart
-+ I PipeRead emacsstart.sh
++ I PipeRead runemacs.sh
++ I Next ("Emacs") Iconify off
++ I Next ("Emacs") Raise
 + I Next ("Emacs") Focus NoWarp
 
 # Programs Menu
@@ -637,7 +639,7 @@ DestroyModuleConfig IconDoc: *
 *IconDoc: Colorset 15
 *IconDoc: PressColorset 5
 *IconDoc: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/doc.png" \
-          Action (Mouse1) Exec runemacs.sh)
+          Action (Mouse1) EmacsStart)
 
 DestroyModuleConfig IconXv: *
 *IconXv: Colorset 16
