@@ -287,6 +287,7 @@ Colorset 14 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1
 Colorset 15 fg #32302c, bg #999999, TiledPixmap iconbg.xpm, hi #fffefe, sh #fffefe       # icons
 Colorset 16 fg #32302c, bg #999999, TiledPixmap iconbg-xv.xpm, hi #fffefe, sh #948c79    # vx icon
 Colorset 17 fg #ececfe, bg #e4e3d5, TiledPixmap pageractive.xpm, hi #606060, sh #665f52  # pager active
+Colorset 18 fg #c4bba8, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # pager
 ###########
 
 # MenuStyles
@@ -773,10 +774,9 @@ DestroyModuleConfig FvwmIconMan: *
 
 
 DestroyModuleConfig FvwmPager: *
-*FvwmPager: Rows 0
-*FvwmPager: Columns 1
-*FvwmPager: Monitor $$[pointer.screen]
-*FvwmPager: Colorset * 5
+*FvwmPager: Rows 2
+*FvwmPager: Columns 2
+*FvwmPager: Colorset * 18
 *FvwmPager: Font none
 *FvwmPager: HilightColorset * 5  # sets background for some reason
 *FvwmPager: NoSeparators
@@ -787,7 +787,7 @@ DestroyModuleConfig FvwmPager: *
 
 DestroyModuleConfig KoolPager: *
 *KoolPager: Colorset 5
-*KoolPager: (Frame -1, Padding 2 1, Swallow FvwmPager "Module FvwmPager")
+*KoolPager: (Frame -1, Padding 2 1, Swallow FvwmPager "Module FvwmPager 0 3")
 
 DestroyModuleConfig KoolLoadCpu: *
 *KoolLoadCpu: Colorset 5
