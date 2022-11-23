@@ -445,10 +445,17 @@ AddToMenu   MenuSendToPage
 Silent Key F1 A M Menu MenuFvwmRoot
 Silent Key Menu A A Menu MenuFvwmRoot
 Silent Key Tab A M WindowList Root c c NoDeskSort, CurrentAtEnd, SelectOnRelease Meta_L
-Silent Key 1 A 4S GotoDesk 0 0
-Silent Key 2 A 4S GotoDesk 0 1
-Silent Key 3 A 4S GotoDesk 0 2
-Silent Key 4 A 4S GotoDesk 0 3
+Silent Key 1 A 4 GotoDesk 0 0
+Silent Key 2 A 4 GotoDesk 0 1
+Silent Key 3 A 4 GotoDesk 0 2
+Silent Key 4 A 4 GotoDesk 0 3
+Silent Key Right A 4S GotoDesk 1 0 3 # one desk forward
+Silent Key Left A 4S GotoDesk -1 0 3 # one desk back
+
+Silent Key 1 A 4S MovetoDesk 0 0
+Silent Key 2 A 4S MovetoDesk 0 1
+Silent Key 3 A 4S MovetoDesk 0 2
+Silent Key 4 A 4S MovetoDesk 0 3
 
 Silent Key Return A 4 Exec runterminal.sh
 Silent Key Left A 4 ThisWindow MoveLeft
@@ -766,6 +773,8 @@ DestroyModuleConfig FvwmIconMan: *
 
 
 DestroyModuleConfig FvwmPager: *
+*FvwmPager: Rows 0
+*FvwmPager: Columns 1
 *FvwmPager: Monitor $$[pointer.screen]
 *FvwmPager: Colorset * 5
 *FvwmPager: Font none
@@ -778,7 +787,7 @@ DestroyModuleConfig FvwmPager: *
 
 DestroyModuleConfig KoolPager: *
 *KoolPager: Colorset 5
-*KoolPager: (Frame -1, Padding 2, Swallow FvwmPager "Module FvwmPager")
+*KoolPager: (Frame -1, Padding 2 1, Swallow FvwmPager "Module FvwmPager")
 
 DestroyModuleConfig KoolLoadCpu: *
 *KoolLoadCpu: Colorset 5
