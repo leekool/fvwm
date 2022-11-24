@@ -11,7 +11,7 @@ LINE3=${arrTIME[3]}
 LINE4=${arrTIME[4]}
 LINE5=${arrTIME[5]}
 
-printf "%25s%-25s%25s%-25s%25s%-25s%25s%-25s%25s%-25s"  "${LINE1:0:${#LINE1}/2}" "${LINE1:${#LINE1}/2}" \
+printf "%28s%-28s%28s%-28s%28s%-28s%28s%-28s%28s%-28s"  "${LINE1:0:${#LINE1}/2}" "${LINE1:${#LINE1}/2}" \
                                                         "${LINE2:0:${#LINE2}/2}" "${LINE2:${#LINE2}/2}" \
                                                         "${LINE3:0:${#LINE3}/2}" "${LINE3:${#LINE3}/2}" \
                                                         "${LINE4:0:${#LINE4}/2}" "${LINE4:${#LINE4}/2}" \
