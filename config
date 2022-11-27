@@ -68,6 +68,9 @@ AddToFunc   StartFunction
 + I Module FvwmMFL
 + I Module FvwmCommandS
 + I Module FvwmButtons FvwmSideBar
++ I Module FvwmEvent StartLeft
++ I Module FvwmEvent StartRight
++ I Module FvwmEvent StartOther
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -778,7 +781,3 @@ DestroyModuleConfig StartRight: *
 DestroyModuleConfig StartOther: *
 *StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
 *StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
-
-Module FvwmEvent StartLeft
-Module FvwmEvent StartRight
-Module FvwmEvent StartOther
