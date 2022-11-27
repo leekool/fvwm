@@ -62,12 +62,12 @@ AddToFunc InitFunction
 
 DestroyFunc StartFunction
 AddToFunc   StartFunction
-+ I Module FvwmButtons
-+ I Module FvwmEvent EventNewDesk
-+ I FvwmEvent FvwmEvent-NewWindow
 + I Module FvwmMFL
 + I Module FvwmCommandS
++ I Module FvwmButtons
 + I Module FvwmButtons FvwmSideBar
++ I Module FvwmEvent FvwmEvent-NewWindow
++ I Module FvwmEvent EventNewDesk
 + I Module FvwmEvent StartLeft
 + I Module FvwmEvent StartRight
 + I Module FvwmEvent StartOther
@@ -154,17 +154,10 @@ DefaultFont "xft:Tamzen:pixelsize=15"
 OpaqueMoveSize unlimited  # all windows OpaqueMove (vs wireframe)
 IgnoreModifiers L25  # ignore numlock (for bindings)
 SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
-Style * UseDecor KoolTitle
-Style * ClickToFocus, MouseFocusClickRaises  # mouse click focuses windows
-Style * MinOverlapPlacement, GrabFocusOff, !UsePPosition  # window placement
-Style * ResizeOpaque, SnapAttraction 6 SameType ScreenAll, SnapGrid  # windows snap to each other and screen edge
-Style * DecorateTransient, StackTransientParent  # transient windows
-Style * !FPGrabFocusTransient, FPReleaseFocusTransient
-Style * WindowShadeScrolls, WindowShadeSteps 20  #  window shade
-Style * BorderWidth 5, HandleWidth 5  # decor styles
-Style * Colorset 1, HilightColorset 2
-Style * BorderColorset 3, HilightBorderColorset 4
-Style * !Icon  # disable weird icons on desktop
+Style * UseDecor KoolTitle, ClickToFocus, MouseFocusClickRaises, MinOverlapPlacement, GrabFocusOff, !UsePPosition \
+        ResizeOpaque, SnapAttraction 6 SameType ScreenAll, SnapGrid, DecorateTransient, StackTransientParent \
+        !FPGrabFocusTransient, FPReleaseFocusTransient, WindowShadeScrolls, WindowShadeSteps 20, !Icon \
+        BorderWidth 5, HandleWidth 5, Colorset 1, HilightColorset 2, BorderColorset 3, HilightBorderColorset 4
 
 # window specific styles
 Style ConfirmQuit !Title, PositionPlacement Center, WindowListSkip, Layer 6
