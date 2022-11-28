@@ -1,3 +1,4 @@
+#
 #   .----------------.  .----------------.  .----------------.
 #  | .--------------. || .--------------. || .--------------. |
 #  | |   _____      | || |  _________   | || |  _________   | |
@@ -10,49 +11,33 @@
 #  | '--------------' || '--------------' || '--------------' |
 #   '----------------'  '----------------'  '----------------'
 #
-#  This config file isn't organised
-#
 #    1: Functions
 #    2: Styles
 #    3: Colorsets
-#    4: Menus
-#    5: Bindings
-#    6: Decor
+#    4: Decor
+#    5: Menus
+#    6: Bindings
 #    7: Modules
 #
-#################################
 
+# Environment variables
 InfoStoreAdd terminal alacritty
-
-# environment variables
 SetEnv fvwm_term /usr/bin/alacritty
 SetEnv fvwm_wallpaper $[FVWM_USERDIR]/wallpaper
 SetEnv fvwm_icon $[FVWM_USERDIR]/icons
 ImagePath $[fvwm_icon]:$[fvwm_icon];.png:$[fvwm_wallpaper]:$[FVWM_USERDIR]/icons/windows98-icons/png:$[FVWM_USERDIR]/icons/NineIcons48x/status/16:+
 
-
-# 1: Functions
-
-# Fvwm can use custom functions for various tasks.
-# The syntax for defining a function named FunctionName is:
-
-#   DestroyFunc FunctionName
-#   AddToFunc FunctionName
+#    ______  ___  _____________________  _  ______
+#   / __/ / / / |/ / ___/_  __/  _/ __ \/ |/ / __/
+#  / _// /_/ /    / /__  / / _/ // /_/ /    /\ \
+# /_/  \____/_/|_/\___/ /_/ /___/\____/_/|_/___/
+#
 #   + I [Action to do Immediately]
-#   + C [Action to do on a Mouse Click]
-#   + D [Action to do on a Mouse Double Click]
-#   + H [Action to do on a Mouse Hold]
-#   + M [Action to do on a Mouse Motion]
-##########
-
-##########
-# Start Function
-
-# The start function is run right after fvwm is done reading
-# the config file. This function run after each restart
-# so using Test (Init) or Test (Restart) can further control
-# actions that are run during the first time run (Init) or
-# actions that are run after a restart.
+#   + C [Action to do on Mouse Click]
+#   + D [Action to do on Mouse Double Click]
+#   + H [Action to do on Mouse Hold]
+#   + M [Action to do on Mouse Motion]
+#
 
 DestroyFunc InitFunction
 AddToFunc InitFunction
@@ -72,7 +57,14 @@ AddToFunc   StartFunction
 + I Module FvwmEvent StartRight
 + I Module FvwmEvent StartOther
 
-# Mouse Bindings Functions
+DestroyFunc EmacsStart
+AddToFunc EmacsStart
++ I PipeRead runemacs.sh
++ I Next ("Emacs") Iconify off
++ I Next ("Emacs") Raise
++ I Next ("Emacs") Focus NoWarp
+
+# Mouse functions
 DestroyFunc RaiseMoveX
 AddToFunc RaiseMoveX
 + I Raise
@@ -89,9 +81,7 @@ AddToFunc MoveToCurrent
 + I ThisWindow MoveToPage
 + I ThisWindow MoveToDesk
 
-# Function: IconManClick
-
-# This function is run from FvwmIconMan when the button is clicked.
+# Run from FvwmIconMan when a button is clicked
 DestroyFunc IconManClick
 AddToFunc   IconManClick
 + I ThisWindow (Raised, !Shaded, !Iconic, CurrentPage, Focused) Iconify
@@ -101,9 +91,7 @@ AddToFunc   IconManClick
 + I ThisWindow Raise
 + I ThisWindow (AcceptsFocus) FlipFocus
 
-# Function: ToggleTitle
-
-# This function will toggle if fvwm shows the TitleBar.
+# Toggle the TitleBar
 DestroyFunc ToggleTitle
 AddToFunc   ToggleTitle
 + I ThisWindow (State 1) WindowStyle Title
@@ -112,7 +100,7 @@ AddToFunc   ToggleTitle
 + I WindowStyle !Title
 + I State 1 True
 
-# window movement
+# Window movement
 DestroyFunc MoveLeft
 AddToFunc MoveLeft
 + I ThisWindow (Maximized) Maximize
@@ -147,9 +135,13 @@ AddToFunc LeeBringToTop
 + I ThisWindow (Layer 6) WindowStyle StaysPut
 + I TestRc (NoMatch) WindowStyle StaysOnTop
 
-# 2: Styles
+#    ____________  ____   ________
+#   / __/_  __/\ \/ / /  / __/ __/
+#  _\ \  / /    \  / /__/ _/_\ \
+# /___/ /_/     /_/____/___/___/
+#
 
-# global styles
+# Global styles
 DefaultFont "xft:Tamzen:pixelsize=15"
 OpaqueMoveSize unlimited  # all windows OpaqueMove (vs wireframe)
 IgnoreModifiers L25  # ignore numlock (for bindings)
@@ -159,7 +151,7 @@ Style * UseDecor KoolTitle, ClickToFocus, MouseFocusClickRaises, MinOverlapPlace
         !FPGrabFocusTransient, FPReleaseFocusTransient, WindowShadeScrolls, WindowShadeSteps 20, !Icon \
         BorderWidth 5, HandleWidth 5, Colorset 1, HilightColorset 2, BorderColorset 3, HilightBorderColorset 4
 
-# window specific styles
+# Window specific styles
 Style ConfirmQuit !Title, PositionPlacement Center, WindowListSkip, Layer 6
 Style FvwmIdent WindowListSkip
 Style Steam HandleWidth 0, !Title
@@ -175,24 +167,23 @@ Style firefox PositionPlacement -0 50-50w, !Title, NoPPosition, NoUSPosition
 Style "Volume Mixer" !Title, PositionPlacement -0 -33p, StaysOnTop, BorderColorset 4  # always has focused border
 Style "Top10" !Title, PositionPlacement -0 -33p, StaysOnTop, BorderColorset 4
 
-# fvwmbuttons
+# FvwmButtons
 Style FvwmButtons BorderWidth 1, BorderColorset 6, FixedPosition, FixedSize, NeverFocus \
       Sticky, StaysOnBottom, !Title, !Handles, UseDescor TaskbarBorder, WindowListSkip
 Style "KoolTray" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
       CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable, NeverFocus
 
-
 # Desktops and Pages
-
-# Fvwm has both Virtual Desktops and Pages. Each Desktop is built from
-# a grid of Pages. The following sets the name of four Desktops and then
-# divides each Desktop into a 2x2 grid of Pages that are positioned as
 #
 #   +---+---+
 #   |   |   |
 #   +---+---+
 #   |   |   |
 #   +---+---+
+#
+# Fvwm has both Virtual Desktops and Pages. Each Desktop is built from
+# a grid of Pages. The following sets the name of four Desktops and then
+# divides each Desktop into a 2x2 grid of Pages that are positioned as
 
 DesktopName 0 I
 DesktopName 0 II
@@ -202,29 +193,30 @@ DesktopName 0 IV
 # EdgeScroll will move the view port between the Pages when the mouse
 # moves to the edge of the screen. This set the amount of distance to
 # scroll at 100% (full page) and the EdgeResistance which is a timer
-# for how long the mouse as at the edge before it scrolls.
+# for how long the mouse as at the edge before it scrolls
 
-EdgeScroll 0 0 #  disabled (default 100 100)
+EdgeScroll 0 0 # disabled (default 100 100)
 EdgeResistance 450
 EdgeThickness 2
 Style * EdgeMoveDelay 350, EdgeMoveResistance 350
 
 # EwmhBaseStruts [left] [right] [top] [bottom]
 # Reserves space along the edge(s) of the Screen that will not
-# be covered when maximizing or placing windows.
+# be covered when maximizing or placing windows
 
 EwmhBaseStruts 0 0 0 0
 
 # This sets the ClickTime and MoveThreshold used to determine
-# Double Clicks, Hold and Move for the mouse.
+# Double Clicks, Hold and Move for the mouse
 
 ClickTime 250
 MoveThreshold 3
 
-# 3: Colorsets
-
-# Colorsets can be used to configure the color of the various
-# parts of fvwm such as window decor, menus, modules, etc.
+#   _________  __   ____  ___  __________________
+#  / ___/ __ \/ /  / __ \/ _ \/ __/ __/_  __/ __/
+# / /__/ /_/ / /__/ /_/ / , _/\ \/ _/  / / _\ \
+# \___/\____/____/\____/_/|_/___/___/ /_/ /___/
+#
 
 Colorset 0  fg #32302c, bg #fffefe, TiledPixmap taskbarbg.xpm, hi #92998b, sh #343433    # menu
 Colorset 1  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar inactive
@@ -246,7 +238,48 @@ Colorset 16 fg #32302c, bg #999999, TiledPixmap iconbg-xv.xpm, hi #fffefe, sh #9
 Colorset 17 fg #ececfe, bg #e4e3d5, TiledPixmap pageractive.xpm, hi #606060, sh #665f52  # pager active
 Colorset 18 fg #c4bba8, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # pager
 
-# MenuStyles
+#    ___  _____________  ___
+#   / _ \/ __/ ___/ __ \/ _ \
+#  / // / _// /__/ /_/ / , _/
+# /____/___/\___/\____/_/|_|
+#
+# Button Locations: [1 3 5 7 9  TTTTT  0 8 6 4 2]
+#
+#   1 - WindowOps Menu
+#   2 - Close
+#   4 - Maximize
+#   6 - Minimize
+
+DestroyDecor KoolTitle
+AddToDecor KoolTitle
++ TitleStyle RightJustified Height 25
++ Style * TitleFormat %n %
++ TitleStyle AllActive TiledPixmap titlebar.xpm -- Flat
++ TitleStyle AllInactive TiledPixmap titlebar.xpm -- Flat
++ BorderStyle Active -- HiddenHandles
++ BorderStyle Inactive -- HiddenHandles
++ ButtonStyle 2 \
+        ActiveUp (Pixmap button/close-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap button/close-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap button/close-inactive.xpm -- Flat UseTitleStyle)
++ ButtonStyle 4 \
+        ActiveUp (Pixmap button/maximize-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap button/maximize-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap button/maximize-inactive.xpm -- Flat UseTitleStyle)
++ ButtonStyle 6 \
+        ActiveUp (Pixmap button/minimize-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap button/minimize-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap button/minimize-inactive.xpm -- Flat UseTitleStyle)
++ ButtonStyle 1 \
+        ActiveUp (Pixmap button/windowops-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap button/windowops-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap button/windowops-inactive.xpm -- Flat UseTitleStyle)
+
+#    __  ________  ____  ______
+#   /  |/  / __/ |/ / / / / __/
+#  / /|_/ / _//    / /_/ /\ \
+# /_/  /_/___/_/|_/\____/___/
+#
 
 MenuStyle * PopupDelayed, PopupDelay 200, PopdownImmediately
 MenuStyle * PopupOffset -5 100, TitleWarpOff
@@ -257,15 +290,11 @@ MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
 MenuStyle * ItemFormat "%|%5.5i%1.3l%2.3>%|"
 MenuStyle * VerticalItemSpacing 1 1, VerticalTitleSpacing 2 2
 MenuStyle * MenuColorset 5
-MenuStyle * ActiveFore #e4e3d5, Hilight3DOn, HilightBack #938122
+MenuStyle * ActiveFore #e4e3d5, Hilight3D On, HilightBack #938122
 MenuStyle * ActiveColorset 7
 MenuStyle * Font "xft:Tamzen:pixelsize=20"
 
-# Root Menu
-
-# The root menu will PopUp with a click in the root
-# window or using alt-f1 (or menu).
-
+# The root menu will PopUp with a click in the root window or using alt-f1 (or menu)
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot
 #+ "&Programs%icons/programs.png%" Popup MenuPrograms
@@ -280,26 +309,13 @@ AddToMenu   MenuFvwmRoot
 # Generate XDGMenu
 PipeRead "fvwm-menu-desktop -e"
 
-DestroyFunc EmacsStart
-AddToFunc EmacsStart
-+ I PipeRead runemacs.sh
-+ I Next ("Emacs") Iconify off
-+ I Next ("Emacs") Raise
-+ I Next ("Emacs") Focus NoWarp
-
-# Programs Menu
-
-# This test for some common programs and adds them to the menu.
-# When adding programs you don't need to use the Test (x foo)
-# lines as this is only to help make this menu portable.
-
+# Programs menu
 DestroyMenu MenuPrograms
 AddToMenu   MenuPrograms
-Test (x brave) + "Firefox" Exec exec librewolf
++ "Firefox" Exec exec firefox
 + "Emacs" EmacsStart
 
-
-# Window Operations Menus
+# Window operations menus
 DestroyMenu MenuWindowOps
 AddToMenu   MenuWindowOps
 + "Move"      Move
@@ -319,14 +335,14 @@ AddToMenu   MenuWindowOpsLong
 + "(De)Iconify"         Iconify
 + "(Un)Maximize"        Maximize
 + "(Un)Shade"           WindowShade
-+ "(Un)Sticky"		    Stick
-+ "(No)TitleBar"	    Pick (CirculateHit) ToggleTitle
++ "(Un)Sticky"          Stick
++ "(No)TitleBar"        Pick (CirculateHit) ToggleTitle
 + "Send To"             Popup MenuSendTo
 + "" Nop
 + "Identify"            Module FvwmIdent
 + "" Nop
-+ "Raise"		        Raise
-+ "Lower"		        Lower
++ "Raise"               Raise
++ "Lower"               Lower
 + "" Nop
 + "StaysOnTop"          Pick (CirculateHit) Layer 0 6
 + "StaysPut"            Pick (CirculateHit) Layer 0 4
@@ -340,14 +356,14 @@ AddToMenu   MenuIconOps
 + "(De)Iconify"         Iconify
 + "(Un)Maximize"        Maximize
 + "(Un)Shade"           WindowShade
-+ "(Un)Sticky"		    Stick
-+ "(No)TitleBar"	    Pick (CirculateHit) ToggleTitle
++ "(Un)Sticky"          Stick
++ "(No)TitleBar"        Pick (CirculateHit) ToggleTitle
 + "Send To"             Popup MenuSendTo
 + "" Nop
 + "Identify"            Module FvwmIdent
 + "" Nop
-+ "Raise"		        Raise
-+ "Lower"		        Lower
++ "Raise"               Raise
++ "Lower"               Lower
 + "" Nop
 + "StaysOnTop"          Pick (CirculateHit) Layer 0 6
 + "StaysPut"            Pick (CirculateHit) Layer 0 4
@@ -364,22 +380,24 @@ AddToMenu MenuSendTo
 
 DestroyMenu MenuSendToDesk
 AddToMenu   MenuSendToDesk
-+ "Desk 0"	MoveToDesk 0 0
-+ "Desk 1"	MoveToDesk 0 1
-+ "Desk 2"	MoveToDesk 0 2
-+ "Desk 3"	MoveToDesk 0 3
++ "Desk 0" MoveToDesk 0 0
++ "Desk 1" MoveToDesk 0 1
++ "Desk 2" MoveToDesk 0 2
++ "Desk 3" MoveToDesk 0 3
 
 DestroyMenu MenuSendToPage
 AddToMenu   MenuSendToPage
-+ "Page (0,0)"	MoveToPage 0 0
-+ "Page (0,1)"	MoveToPage 0 1
-+ "Page (1,0)"	MoveToPage 1 0
-+ "Page (1,1)"	MoveToPage 1 1
++ "Page (0,0)" MoveToPage 0 0
++ "Page (0,1)" MoveToPage 0 1
++ "Page (1,0)" MoveToPage 1 0
++ "Page (1,1)" MoveToPage 1 1
 
-#######
-# 5: Mouse and Key bindings
+#    ___  _____  _____  _____  ___________
+#   / _ )/  _/ |/ / _ \/  _/ |/ / ___/ __/
+#  / _  |/ //    / // // //    / (_ /\ \
+# /____/___/_/|_/____/___/_/|_/\___/___/
 #
-# Contexts:
+# Context:
 #     R = Root Window                 rrrrrrrrrrrrrrrrrrrrrr
 #     W = Application Window          rIrrrr<---------^rrrrr
 #     F = Frame Corners               rrrrrr[13TTTT642]rrrrr
@@ -394,13 +412,9 @@ AddToMenu   MenuSendToPage
 #
 # Format: Key <X>  <Context> <Modifier> <Action>
 #         Mouse <X> <Context> <Modifier> <Action>
-######
+#
+# Silent suppresses any errors (such as keyboards with no Menu key)
 
-# Alt+F1 or Menu to load the root menu and Alt+Tab for a WindowList.
-# Ctrl+F1/F2/F3/F4 will switch between the Virtual Desktops.
-# Super+R  will launch a terminal.
-
-# Silent supresses any errors (such as keyboards with no Menu key).
 Silent Key F1 A M Menu MenuFvwmRoot
 Silent Key Menu A A Menu MenuFvwmRoot
 Silent Key Tab A M WindowList Root c c NoDeskSort, CurrentAtEnd, SelectOnRelease Meta_L
@@ -450,8 +464,8 @@ Silent Key XF86MonBrightnessDown A A Exec xbacklight -dec 5
 Silent Key XF86MonBrightnessUp A A Exec xbacklight -inc 5
 
 # Window Buttons: [1 3 5 7 9  TTTTT  0 8 6 4 2]
-#   1 - Open the WindowOps menu.
-#   2 - Close on single click, Destory on double click.
+#   1 - Open the WindowOps menu
+#   2 - Close on single click, Destory on double click
 #   4 - Maximize (right/middle button will only maximize vertical/horizontal)
 #   6 - Iconify (minimize)
 
@@ -470,90 +484,105 @@ Mouse 1 6 A Iconify
 #                Middle Click - Window List Menu
 #   Right click TitleBar/Borders for WindowOps Menu
 
-Mouse 1	T    A RaiseMoveX Move Maximize
-Mouse 1	FS   A RaiseMove Resize
-Mouse 4	T    A WindowShade True
-Mouse 5	T    A WindowShade False
-Mouse 1	R    A Menu MenuFvwmRoot
-Mouse 2	R    A WindowList
-Mouse 3	R    A Menu MenuWindowOpsLong
-Mouse 1	I    A RaiseMoveX Move "Iconify off"
-Mouse 3	T    A Menu MenuWindowOps
-Mouse 3 I    A Menu MenuIconOps
+Mouse 1     T    A RaiseMoveX Move Maximize
+Mouse 1     FS   A RaiseMove Resize
+Mouse 4     T    A WindowShade True
+Mouse 5     T    A WindowShade False
+Mouse 1     R    A Menu MenuFvwmRoot
+Mouse 2     R    A WindowList
+Mouse 3     R    A Menu MenuWindowOpsLong
+Mouse 1     I    A RaiseMoveX Move "Iconify off"
+Mouse 3     T    A Menu MenuWindowOps
+Mouse 3     I    A Menu MenuIconOps
 
-# 6: Window Decor
-
-# Buttons Locations: [1 3 5 7 9  TTTTT  0 8 6 4 2]
-
-#   1 - WindowOps Menu
-#   2 - Close
-#   4 - Maximize
-#   6 - Minimize
-
-DestroyDecor KoolTitle
-AddToDecor KoolTitle
-+ TitleStyle RightJustified Height 25
-+ Style * TitleFormat %n %
-+ TitleStyle AllActive TiledPixmap titlebar.xpm -- Flat
-+ TitleStyle AllInactive TiledPixmap titlebar.xpm -- Flat
-+ BorderStyle Active -- HiddenHandles
-+ BorderStyle Inactive -- HiddenHandles
-+ ButtonStyle 2 \
-        ActiveUp (Pixmap button/close-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/close-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/close-inactive.xpm -- Flat UseTitleStyle)
-+ ButtonStyle 4 \
-        ActiveUp (Pixmap button/maximize-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/maximize-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/maximize-inactive.xpm -- Flat UseTitleStyle)
-+ ButtonStyle 6 \
-        ActiveUp (Pixmap button/minimize-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/minimize-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/minimize-inactive.xpm -- Flat UseTitleStyle)
-+ ButtonStyle 1 \
-        ActiveUp (Pixmap button/windowops-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/windowops-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/windowops-inactive.xpm -- Flat UseTitleStyle)
-
-# 7: Modules
+#    __  _______  ___  __  ____   ________
+#   /  |/  / __ \/ _ \/ / / / /  / __/ __/
+#  / /|_/ / /_/ / // / /_/ / /__/ _/_\ \
+# /_/  /_/\____/____/\____/____/___/___/
+#
 
 # FvwmIdent
-
-# FvwmIdent is a module that can be used to get the various info about
-# a window. One use is getting the class/resource/name of a window.
 DestroyModuleConfig FvwmIdent:*
 *FvwmIdent: Colorset 0
 
 # FvwmScript
-
-# FvwmScript is a module that allows one to write custom desktop
-# widgets and various other tools. This config uses two FvwmScripts.
-#   - DateTime - uses the output of "date" to display the date/time
-#     on the RightPanel.
-#   - Quit - This is a popup that asks for quit confirmation before
-#     quitting fvwm.
 DestroyModuleConfig FvwmScript:*
 *FvwmScript: DefaultColorset 0
 *FvwmScript: Path $[FVWM_USERDIR]/scripts
 
-
 # FvwmEvent
+DestroyModuleConfig FvwmEvent: *
+*FvwmEvent: PassID
+*FvwmEvent: new_desk
+*FvwmEvent-NewWindow: StartDelay 3
+*FvwmEvent-NewWindow: add_window "ThisWindow ("Alacritty|Mozilla*|Emacs|feh|Thunar|Nicotine*") Focus NoWarp"
 
-# FvwmEvent is a module that can run an action or function
-# on specific events. This instance changes which desk number
-# is highlighted when the desk is changed.
 DestroyModuleConfig EventNewDesk:*
 *EventNewDesk: PassID
 *EventNewDesk: new_desk "SendToModule FvwmScript-DesktopCycle SendString 1 1"
 
-# FvwmForm
+DestroyModuleConfig StartLeft: *
+*StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo $(windowmovement.sh left)'"
+
+DestroyModuleConfig StartRight: *
+*StartRight: add_window "ThisWindow ("Mozilla*") PipeRead 'echo $(windowmovement.sh right)'"
+
+DestroyModuleConfig StartOther: * # Needs to run twice (fix)
+*StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
+*StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
 
 # FvwmForm is a module that can be used to build a GUI
-# form. Used with fvwm-menu-desktop-config.fpl.
-# This sets the default col
+# form. Used with fvwm-menu-desktop-config.fpl
 *FvwmFormDefault: Colorset 0
 *FvwmFormDefault: ItemColorset 0
 
+# FvwmPager
+DestroyModuleConfig FvwmPager: *
+*FvwmPager: Rows 2
+*FvwmPager: Columns 2
+*FvwmPager: Colorset * 18
+*FvwmPager: Font none
+*FvwmPager: HilightColorset * 5  # sets background for some reason
+*FvwmPager: NoSeparators
+*FvwmPager: UseSkipList
+*FvwmPager: ShapeLabels
+*FvwmPager: Window3DBorders
+*FvwmPager: WindowColorsets 8 17  # inactive active
+
+# FvwmIconMan
+DestroyModuleConfig FvwmIconMan: *
+*FvwmIconMan: Resolution desk
+*FvwmIconMan: UseWinList true
+*FvwmIconMan: ManagerGeometry 1x50+242+22
+*FvwmIconMan: ButtonGeometry 1x22
+*FvwmIconMan: Action Mouse 0 A ret
+*FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
+*FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
+*FvwmIconMan: Colorset 12
+*FvwmIconMan: IconColorset 14
+*FvwmIconMan: IconAndSelectColorset 13
+*FvwmIconMan: DrawIcons always
+*FvwmIconMan: FocusAndSelectButton down
+*FvwmIconMan: PlainColorset 5
+*FvwmIconMan: FocusAndSelectColorset 9
+*FvwmIconMan: FocusButton down
+*FvwmIconMan: FocusColorset 9
+*FvwmIconMan: SelectColorset 13
+*FvwmIconMan: ReliefThickness 1
+*FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
+*FvwmIconMan: Format "%i"
+*FvwmIconMan: IconAndSelectButton flat
+*FvwmIconMan: IconButton flat
+*FvwmIconMan: PlainButton flat
+*FvwmIconMan: SelectButton flat
+*FvwmIconMan: ShowTransient false
+*FvwmIconMan: Sort id
+*FvwmIconMan: Title ""
+*FvwmIconMan: TitleButton flat
+*FvwmIconMan: DontShow "Volume Mixer"
+*FvwmIconMan: DontShow "DateTime"
+
+# FvwmButtons
 DestroyModuleConfig FvwmButtons: *
 Piperead "echo *FvwmButtons: Geometry \
          763x109+$(expr $(currentscreenall.sh mouse | cut -d 'x' -f1) / 2 - 350)-8"
@@ -621,70 +650,21 @@ DestroyModuleConfig FvwmSideBar: *
 *FvwmSideBar: (1x20, Frame 1, Padding 2, Swallow KoolLoadCpu "Module FvwmButtons KoolLoadCpu")
 *FvwmSideBar: (1x23, Frame 1, Padding 2, Swallow KoolIconMan "Module FvwmButtons KoolIconMan")
 
-# DestroyModuleConfig FvwmIconMan: *
-# *FvwmIconMan: Resolution desk
-# *FvwmIconMan: UseWinList true
-# *FvwmIconMan: Action Mouse 0 A ret
-# *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
-# *FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
-# *FvwmIconMan: Colorset 12
-# *FvwmIconMan: IconColorset 14
-# *FvwmIconMan: IconAndSelectColorset 13
-# *FvwmIconMan: ButtonGeometry 1x22
-# *FvwmIconMan: DrawIcons always
-# *FvwmIconMan: FocusAndSelectButton down
-# *FvwmIconMan: PlainColorset 5
-# *FvwmIconMan: FocusAndSelectColorset 9
-# *FvwmIconMan: FocusButton down
-# *FvwmIconMan: FocusColorset 9
-# *FvwmIconMan: SelectColorset 13
-# *FvwmIconMan: ReliefThickness 1
-# *FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
-# *FvwmIconMan: Format "%i"
-# *FvwmIconMan: IconAndSelectButton flat
-# *FvwmIconMan: IconButton flat
-# *FvwmIconMan: ManagerGeometry 1x1
-# *FvwmIconMan: MaxButtonWidthByColumns 6
-# *FvwmIconMan: PlainButton flat
-# *FvwmIconMan: SelectButton flat
-# *FvwmIconMan: ShowTransient false
-# *FvwmIconMan: Sort id
-# *FvwmIconMan: Title ""
-# *FvwmIconMan: TitleButton flat
-# *FvwmIconMan: DontShow "Volume Mixer"
-# *FvwmIconMan: DontShow "DateTime"
+DestroyModuleConfig KoolPager: *
+*KoolPager: Colorset 5
+*KoolPager: (Frame -1, Padding 2 1, Swallow FvwmPager "Module FvwmPager 0 3")
 
-DestroyModuleConfig FvwmIconMan: *
-*FvwmIconMan: Resolution desk
-*FvwmIconMan: UseWinList true
-*FvwmIconMan: ManagerGeometry 1x50+242+22
-*FvwmIconMan: ButtonGeometry 1x22
-*FvwmIconMan: Action Mouse 0 A ret
-*FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
-*FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
-*FvwmIconMan: Colorset 12
-*FvwmIconMan: IconColorset 14
-*FvwmIconMan: IconAndSelectColorset 13
-*FvwmIconMan: DrawIcons always
-*FvwmIconMan: FocusAndSelectButton down
-*FvwmIconMan: PlainColorset 5
-*FvwmIconMan: FocusAndSelectColorset 9
-*FvwmIconMan: FocusButton down
-*FvwmIconMan: FocusColorset 9
-*FvwmIconMan: SelectColorset 13
-*FvwmIconMan: ReliefThickness 1
-*FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
-*FvwmIconMan: Format "%i"
-*FvwmIconMan: IconAndSelectButton flat
-*FvwmIconMan: IconButton flat
-*FvwmIconMan: PlainButton flat
-*FvwmIconMan: SelectButton flat
-*FvwmIconMan: ShowTransient false
-*FvwmIconMan: Sort id
-*FvwmIconMan: Title ""
-*FvwmIconMan: TitleButton flat
-*FvwmIconMan: DontShow "Volume Mixer"
-*FvwmIconMan: DontShow "DateTime"
+DestroyModuleConfig KoolLoadCpu: *
+*KoolLoadCpu: Colorset 5
+*KoolLoadCpu: (Frame -1, Padding 2, Swallow LoadMeter "FvwmScript FvwmScript-LoadMeter")
+
+DestroyModuleConfig KoolTime: *
+*KoolTime: Colorset 5
+*KoolTime: (Frame -1, Padding 2, Swallow DateTime "FvwmScript FvwmScript-KoolTime")
+
+DestroyModuleConfig KoolIconMan: *
+*KoolIconMan: Colorset 5
+*KoolIconMan: (Frame -1, Padding 2, Swallow (Respawn) FvwmIconMan "Module FvwmIconMan")
 
 # DestroyModuleConfig FvwmButtons: *
 # PipeRead "echo *FvwmButtons: Geometry \
@@ -728,49 +708,35 @@ DestroyModuleConfig FvwmIconMan: *
 #     Action (Mouse 4) Exec amixer -D pulse set Master 5%+, \
 #     Action (Mouse 5) Exec amixer -D pulse set Master 5%-)
 
-DestroyModuleConfig FvwmPager: *
-*FvwmPager: Rows 2
-*FvwmPager: Columns 2
-*FvwmPager: Colorset * 18
-*FvwmPager: Font none
-*FvwmPager: HilightColorset * 5  # sets background for some reason
-*FvwmPager: NoSeparators
-*FvwmPager: UseSkipList
-*FvwmPager: ShapeLabels
-*FvwmPager: Window3DBorders
-*FvwmPager: WindowColorsets 8 17  # inactive active
-
-DestroyModuleConfig KoolPager: *
-*KoolPager: Colorset 5
-*KoolPager: (Frame -1, Padding 2 1, Swallow FvwmPager "Module FvwmPager 0 3")
-
-DestroyModuleConfig KoolLoadCpu: *
-*KoolLoadCpu: Colorset 5
-*KoolLoadCpu: (Frame -1, Padding 2, Swallow LoadMeter "FvwmScript FvwmScript-LoadMeter")
-
-DestroyModuleConfig KoolTime: *
-*KoolTime: Colorset 5
-*KoolTime: (Frame -1, Padding 2, Swallow DateTime "FvwmScript FvwmScript-KoolTime")
-
-DestroyModuleConfig KoolIconMan: *
-*KoolIconMan: Colorset 5
-*KoolIconMan: (Frame -1, Padding 2, Swallow (Respawn) FvwmIconMan "Module FvwmIconMan")
-
-# FvwmEvent
-DestroyModuleConfig FvwmEvent: *
-*FvwmEvent: PassID
-*FvwmEvent: new_desk
-*FvwmEvent-NewWindow: StartDelay 3
-*FvwmEvent-NewWindow: add_window "ThisWindow ("Alacritty|Mozilla*|Emacs|feh|Thunar|Nicotine*") Focus NoWarp"
-
-# starting size/position for certain windows
-DestroyModuleConfig StartLeft: *
-*StartLeft: add_window "ThisWindow ("Emacs|Thunar|Nicotine*") PipeRead 'echo $(windowmovement.sh left)'"
-
-DestroyModuleConfig StartRight: *
-*StartRight: add_window "ThisWindow ("Mozilla*") PipeRead 'echo $(windowmovement.sh right)'"
-
-# has to run twice to work for some reason (fix)
-DestroyModuleConfig StartOther: *
-*StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
-*StartOther: add_window "ThisWindow ("*Discord*") MoveOther"
+# DestroyModuleConfig FvwmIconMan: *
+# *FvwmIconMan: Resolution desk
+# *FvwmIconMan: UseWinList true
+# *FvwmIconMan: Action Mouse 0 A ret
+# *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
+# *FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
+# *FvwmIconMan: Colorset 12
+# *FvwmIconMan: IconColorset 14
+# *FvwmIconMan: IconAndSelectColorset 13
+# *FvwmIconMan: ButtonGeometry 1x22
+# *FvwmIconMan: DrawIcons always
+# *FvwmIconMan: FocusAndSelectButton down
+# *FvwmIconMan: PlainColorset 5
+# *FvwmIconMan: FocusAndSelectColorset 9
+# *FvwmIconMan: FocusButton down
+# *FvwmIconMan: FocusColorset 9
+# *FvwmIconMan: SelectColorset 13
+# *FvwmIconMan: ReliefThickness 1
+# *FvwmIconMan: Font "xft:Tamzen:pixelsize=15"
+# *FvwmIconMan: Format "%i"
+# *FvwmIconMan: IconAndSelectButton flat
+# *FvwmIconMan: IconButton flat
+# *FvwmIconMan: ManagerGeometry 1x1
+# *FvwmIconMan: MaxButtonWidthByColumns 6
+# *FvwmIconMan: PlainButton flat
+# *FvwmIconMan: SelectButton flat
+# *FvwmIconMan: ShowTransient false
+# *FvwmIconMan: Sort id
+# *FvwmIconMan: Title ""
+# *FvwmIconMan: TitleButton flat
+# *FvwmIconMan: DontShow "Volume Mixer"
+# *FvwmIconMan: DontShow "DateTime"
