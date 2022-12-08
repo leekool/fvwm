@@ -157,12 +157,9 @@ Style FvwmIdent WindowListSkip
 Style Steam HandleWidth 0, !Title
 Style valheim.x86_64 HandleWidth 0, !Title
 Style feh !Title, PositionPlacement Center, NoPPosition, NoUSPosition
-Style emacs-run-launcher !Title, PositionPlacement Center, NoPPosition, NoUSPosition
 Style mpv !Title, HandleWidth 0, PositionPlacement -0 50-50w, StaysOnTop
 Style Alacritty PositionPlacement -100p 50-50w
-Style brave-browser !Title, HandleWidth 0, NoPPosition, UseUSPosition, PositionPlacement -0 50-50w
 Style Emacs NoPPosition, UseUSPosition, PositionPlacement 0 0
-Style librewolf PositionPlacement -0 50-50w, !Title, NoPPosition, NoUSPosition
 Style firefox PositionPlacement -0 50-50w, !Title, NoPPosition, NoUSPosition
 Style "Volume Mixer" !Title, PositionPlacement -0 -33p, StaysOnTop, BorderColorset 4  # always has focused border
 Style "Top10" !Title, PositionPlacement -0 -33p, StaysOnTop, BorderColorset 4
