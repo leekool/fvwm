@@ -622,7 +622,7 @@ DestroyModuleConfig IconEye: *
 *IconEye: Colorset 15
 *IconEye: PressColorset 5
 *IconEye: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/eye.png" \
-          Action (Mouse 1) Exec alacritty -e htop)
+          Action (Mouse 1) Exec firefox)
 
 DestroyModuleConfig IconDoc: *
 *IconDoc: Colorset 15

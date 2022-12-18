@@ -14,6 +14,6 @@ window=($(currentscreenall.sh window | awk 'BEGIN {FS="x"} {print $1, $2}'))
 # fi
 
 width=${window[0]}
-height=$screenheight
+height=${window[1]}
 
 echo "$width $height"
