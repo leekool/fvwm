@@ -1,0 +1,4 @@
+* fvwm3 config
+
+[[screenshot.png]]
+[[screenshot2.png]]
