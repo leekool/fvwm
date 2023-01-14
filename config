@@ -215,25 +215,25 @@ MoveThreshold 3
 # \___/\____/____/\____/_/|_/___/___/ /_/ /___/
 #
 
-Colorset 0  fg #32302c, bg #fffefe, TiledPixmap taskbarbg.xpm, hi #92998b, sh #343433    # menu
-Colorset 1  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar inactive
-Colorset 2  fg #e4e3d5, bg #d8d4c8                                                       # window titlebar active
-Colorset 3  fg #494b46, bg #494b46, hi #686d62  , sh #494b46                             # border inactive
-Colorset 4  fg #222020, bg #222020, hi #32302c, sh #222020                               # border active
-Colorset 5  fg #32302c, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # taskbar/menu
-Colorset 6  fg #434343, bg #434343, sh #434343                                           # taskbar border
-Colorset 7  fg #e4e3d5, bg #fffefe, TiledPixmap down.xpm, hi #5c6057, sh #92998b         # menu active/hover
-Colorset 8  fg #fffefe, bg #003c3c, TiledPixmap pagerbg.xpm, hi #fffefe, sh #948c79      # pager inactive
-Colorset 9  fg #fffefe, bg #222020, TiledPixmap down.xpm, hi #92998b, sh #665f52         # taskbar pressed/pager active
-Colorset 10 fg #a9a1e1, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # RAM widget
-Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # CPU widget
+Colorset 0  fg #32302c, bg #fffefe, TiledPixmap pixmaps/taskbarbg.xpm, hi #92998b, sh #343433    # menu
+Colorset 1  fg #e4e3d5, bg #d8d4c8                                                               # window titlebar inactive
+Colorset 2  fg #e4e3d5, bg #d8d4c8                                                               # window titlebar active
+Colorset 3  fg #494b46, bg #494b46, hi #686d62, sh #494b46                                       # border inactive
+Colorset 4  fg #222020, bg #222020, hi #32302c, sh #222020                                       # border active
+Colorset 5  fg #32302c, bg #999999, TiledPixmap pixmaps/taskbarbg.xpm, hi #fffefe, sh #948c79    # taskbar/menu
+Colorset 6  fg #434343, bg #434343, sh #434343                                                   # taskbar border
+Colorset 7  fg #e4e3d5, bg #fffefe, TiledPixmap pixmaps/down.xpm, hi #5c6057, sh #92998b         # menu active/hover
+Colorset 8  fg #fffefe, bg #003c3c, TiledPixmap pixmaps/pagerbg.xpm, hi #fffefe, sh #948c79      # pager inactive
+Colorset 9  fg #fffefe, bg #222020, TiledPixmap pixmaps/down.xpm, hi #92998b, sh #665f52         # taskbar pressed/pager active
+Colorset 10 fg #a9a1e1, bg #999999, TiledPixmap pixmaps/taskbarbg.xpm, hi #fffefe, sh #948c79    # RAM widget
+Colorset 11 fg #a7b4a9, bg #999999, TiledPixmap pixmaps/taskbarbg.xpm, hi #fffefe, sh #948c79    # CPU widget
 Colorset 12 Transparent
-Colorset 13 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
-Colorset 14 fg #494b46, bg #999999, TiledPixmap taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
-Colorset 15 fg #32302c, bg #999999, TiledPixmap iconbg.xpm, hi #fffefe, sh #fffefe       # icons
-Colorset 16 fg #32302c, bg #999999, TiledPixmap iconbg-xv.xpm, hi #fffefe, sh #948c79    # vx icon
-Colorset 17 fg #ececfe, bg #e4e3d5, TiledPixmap pageractive.xpm, hi #606060, sh #665f52  # pager active
-Colorset 18 fg #c4bba8, bg #999999, TiledPixmap taskbarbg.xpm, hi #fffefe, sh #948c79    # pager
+Colorset 13 fg #494b46, bg #999999, TiledPixmap pixmaps/taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar hover
+Colorset 14 fg #494b46, bg #999999, TiledPixmap pixmaps/taskbarbg.xpm, hi #606060, sh #1f1f1f    # taskbar iconified
+Colorset 15 fg #32302c, bg #999999, TiledPixmap pixmaps/iconbg.xpm, hi #fffefe, sh #fffefe       # icons
+Colorset 16 fg #32302c, bg #999999, TiledPixmap pixmaps/iconbg-xv.xpm, hi #fffefe, sh #948c79    # vx icon
+Colorset 17 fg #ececfe, bg #e4e3d5, TiledPixmap pixmaps/pageractive.xpm, hi #606060, sh #665f52  # pager active
+Colorset 18 fg #c4bba8, bg #999999, TiledPixmap pixmaps/taskbarbg.xpm, hi #fffefe, sh #948c79    # pager
 
 #    ___  _____________  ___
 #   / _ \/ __/ ___/ __ \/ _ \
@@ -251,8 +251,8 @@ DestroyDecor KoolTitle
 AddToDecor KoolTitle
 + TitleStyle RightJustified Height 25
 + Style * TitleFormat %n %
-+ TitleStyle AllActive TiledPixmap titlebar.xpm -- Flat
-+ TitleStyle AllInactive TiledPixmap titlebar.xpm -- Flat
++ TitleStyle AllActive TiledPixmap pixmaps/titlebar.xpm -- Flat
++ TitleStyle AllInactive TiledPixmap pixmaps/titlebar.xpm -- Flat
 + BorderStyle Active -- HiddenHandles
 + BorderStyle Inactive -- HiddenHandles
 + ButtonStyle 2 \
