@@ -27,10 +27,9 @@ case $1 in
         ;;
 esac
 
-# if there is a second argument "other"
-# then echo the dimensions of the other screen
+# optional second argument
 case $2 in
-    "other")
+    "other") # other monitor
         if [ "$pos" -gt "${right[2]}" ]; then
             echo "${left[1]}";
             exit 1;
@@ -39,7 +38,7 @@ case $2 in
             exit 1;
         fi
         ;;
-    "y")
+    "y") # height only
         if [ "$pos" -gt "${right[2]}" ]; then
             echo "${right[1]}" | awk 'BEGIN {FS="x"} {print $1}';
             exit 1;
