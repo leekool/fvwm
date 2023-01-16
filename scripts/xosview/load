@@ -1,5 +1,5 @@
 xosview*title: xosview-load
-xosview*pixmapName: /home/lee/.fvwm/taskbarbg.xpm
+xosview*pixmapName: /home/lee/.fvwm/pixmaps/taskbarbg.xpm
 xosview*captions: False
 xosview*background: black
 xosview*foreground: black
