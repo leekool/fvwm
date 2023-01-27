@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# this reads the volume level in order to change the icon in ~/.fvwm/scripts/FvwmScript-VolumeIcon for the fvwm3 taskbar tray
+# reads the volume level in order to change the icon in ~/.fvwm/scripts/FvwmScript-VolumeIcon for the fvwm3 taskbar tray
 
 TOGGLE=$(awk '/Left:/ {print substr($6, 2, length($6) - 2)}' <(amixer sget Master))  # 'off' for muted
 VOL=$(awk '/Left:/ {print substr($5, 2, length($5) - 3)}' <(amixer sget Master))
