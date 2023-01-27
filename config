@@ -23,7 +23,7 @@
 # Environment variables
 InfoStoreAdd terminal alacritty
 SetEnv fvwm_term /usr/bin/alacritty
-SetEnv fvwm_wallpaper $[FVWM_USERDIR]/images/wallpapers
+SetEnv fvwm_wallpaper $[FVWM_USERDIR]/wallpapers
 SetEnv fvwm_icon $[FVWM_USERDIR]/icons
 
 #    ______  ___  _____________________  _  ______
@@ -45,7 +45,7 @@ AddToFunc InitFunction
 
 DestroyFunc StartFunction
 AddToFunc   StartFunction
-+ I Exec exec feh --bg-tile ~/.fvwm/images/wallpapers/white-tile.png
++ I Exec exec feh --bg-tile ~/.fvwm/wallpapers/white-tile.png
 + I Module FvwmMFL
 + I Module FvwmCommandS
 + I Module FvwmButtons
@@ -255,21 +255,21 @@ AddToDecor KoolTitle
 + BorderStyle Active -- HiddenHandles
 + BorderStyle Inactive -- HiddenHandles
 + ButtonStyle 2 \
-        ActiveUp (Pixmap buttons/close-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap buttons/close-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap buttons/close-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap icons/close-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap icons/close-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap icons/close-inactive.xpm -- Flat UseTitleStyle)
 + ButtonStyle 4 \
-        ActiveUp (Pixmap buttons/maximize-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap buttons/maximize-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap buttons/maximize-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap icons/maximize-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap icons/maximize-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap icons/maximize-inactive.xpm -- Flat UseTitleStyle)
 + ButtonStyle 6 \
-        ActiveUp (Pixmap buttons/minimize-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap buttons/minimize-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap buttons/minimize-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap icons/minimize-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap icons/minimize-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap icons/minimize-inactive.xpm -- Flat UseTitleStyle)
 + ButtonStyle 1 \
-        ActiveUp (Pixmap buttons/windowops-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap buttons/windowops-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap buttons/windowops-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap icons/windowops-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap icons/windowops-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap icons/windowops-inactive.xpm -- Flat UseTitleStyle)
 
 #    __  ________  ____  ______
 #   /  |/  / __/ |/ / / / / __/
@@ -596,42 +596,42 @@ Piperead "echo *FvwmButtons: Geometry \
 DestroyModuleConfig IconPc: *
 *IconPc: Colorset 15
 *IconPc: PressColorset 5
-*IconPc: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/pc.png" \
+*IconPc: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/icons/pc.png" \
          Action (Mouse 1) Exec thunar)
 
 DestroyModuleConfig IconRecycle: *
 *IconRecycle: Colorset 15
 *IconRecycle: PressColorset 5
-*IconRecycle: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/recycle.png" \
+*IconRecycle: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/icons/recycle.png" \
          Action (Mouse 1) Exec nicotine)
 
 DestroyModuleConfig IconMail: *
 *IconMail: Colorset 15
 *IconMail: PressColorset 5
-*IconMail: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/mail.png" \
+*IconMail: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/icons/mail.png" \
            Action (Mouse 1) Exec alacritty -e neomutt)
 
 DestroyModuleConfig IconShell: *
 *IconShell: Colorset 15
 *IconShell: PressColorset 5
-*IconShell: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/shell.png" \
+*IconShell: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/icons/shell.png" \
            Action (Mouse 1) Exec alacritty)
 
 DestroyModuleConfig IconEye: *
 *IconEye: Colorset 15
 *IconEye: PressColorset 5
-*IconEye: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/eye.png" \
+*IconEye: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/icons/eye.png" \
           Action (Mouse 1) Exec firefox)
 
 DestroyModuleConfig IconDoc: *
 *IconDoc: Colorset 15
 *IconDoc: PressColorset 5
-*IconDoc: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/doc.png" \
+*IconDoc: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/icons/doc.png" \
           Action (Mouse1) EmacsStart)
 
 DestroyModuleConfig IconXv: *
 *IconXv: Colorset 16
-*IconXv: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/images/xv.png" \
+*IconXv: (Frame 1, Padding 0, Icon "$[FVWM_USERDIR]/icons/xv.png" \
          Action (Mouse 1) Exec gimp)
 
 DestroyModuleConfig FvwmSideBar: *
