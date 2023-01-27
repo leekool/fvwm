@@ -23,9 +23,8 @@
 # Environment variables
 InfoStoreAdd terminal alacritty
 SetEnv fvwm_term /usr/bin/alacritty
-SetEnv fvwm_wallpaper $[FVWM_USERDIR]/wallpaper
+SetEnv fvwm_wallpaper $[FVWM_USERDIR]/images/wallpapers
 SetEnv fvwm_icon $[FVWM_USERDIR]/icons
-ImagePath $[fvwm_icon]:$[fvwm_icon];.png:$[fvwm_wallpaper]:$[FVWM_USERDIR]/icons/windows98-icons/png:$[FVWM_USERDIR]/icons/NineIcons48x/status/16:+
 
 #    ______  ___  _____________________  _  ______
 #   / __/ / / / |/ / ___/_  __/  _/ __ \/ |/ / __/
@@ -46,7 +45,7 @@ AddToFunc InitFunction
 
 DestroyFunc StartFunction
 AddToFunc   StartFunction
-+ I Exec exec feh --bg-tile ~/.fvwm/wallpaper/white-tile.png
++ I Exec exec feh --bg-tile ~/.fvwm/images/wallpapers/white-tile.png
 + I Module FvwmMFL
 + I Module FvwmCommandS
 + I Module FvwmButtons
@@ -256,21 +255,21 @@ AddToDecor KoolTitle
 + BorderStyle Active -- HiddenHandles
 + BorderStyle Inactive -- HiddenHandles
 + ButtonStyle 2 \
-        ActiveUp (Pixmap button/close-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/close-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/close-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap buttons/close-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap buttons/close-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap buttons/close-inactive.xpm -- Flat UseTitleStyle)
 + ButtonStyle 4 \
-        ActiveUp (Pixmap button/maximize-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/maximize-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/maximize-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap buttons/maximize-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap buttons/maximize-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap buttons/maximize-inactive.xpm -- Flat UseTitleStyle)
 + ButtonStyle 6 \
-        ActiveUp (Pixmap button/minimize-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/minimize-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/minimize-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap buttons/minimize-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap buttons/minimize-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap buttons/minimize-inactive.xpm -- Flat UseTitleStyle)
 + ButtonStyle 1 \
-        ActiveUp (Pixmap button/windowops-activeup.xpm -- Flat UseTitleStyle) \
-        ActiveDown (Pixmap button/windowops-activedown.xpm -- Flat UseTitleStyle) \
-        Inactive (Pixmap button/windowops-inactive.xpm -- Flat UseTitleStyle)
+        ActiveUp (Pixmap buttons/windowops-activeup.xpm -- Flat UseTitleStyle) \
+        ActiveDown (Pixmap buttons/windowops-activedown.xpm -- Flat UseTitleStyle) \
+        Inactive (Pixmap buttons/windowops-inactive.xpm -- Flat UseTitleStyle)
 
 #    __  ________  ____  ______
 #   /  |/  / __/ |/ / / / / __/
