@@ -1,5 +1,4 @@
-* fvwm
-** fvwm config
+* fvwm3 config
 bindings, compositor & notifications dependent on [[https://github.com/leekool/dotfiles][dotfiles]]
 
 [[screenshot.png]]
