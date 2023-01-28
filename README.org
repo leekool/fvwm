@@ -18,5 +18,7 @@ bindings, scripts, compositor & notifications dependent on [[https://github.com/
 | alt + super + ←↑↓→      | resize window                |
 | ctrl + super + ←↑↓→     | move window                  |
 
+-----
+
 * [[./screenshot.png]]
 * [[./screenshot2.png]]
