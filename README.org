@@ -1,5 +1,22 @@
 * fvwm3 config
 bindings, compositor & notifications dependent on [[https://github.com/leekool/dotfiles][dotfiles]]
 
-[[screenshot.png]]
-[[screenshot2.png]]
+**** bindings
+| key                     | action                       |
+|-------------------------+------------------------------|
+| super + ←↑↓→            | window movement              |
+| shift + super + ←→      | cycle desks                  |
+| super + 1/2/3/4         | go to desk 1/2/3/4           |
+| shift + super + 1/2/3/4 | move window to desk 1/2/3/4  |
+| super + o               | move window to other monitor |
+| super + ret             | open alacritty               |
+| super + r               | rofi                         |
+| shift + super + c       | kill window                  |
+| super + s               | screenshot box               |
+| shift + super + s       | screenshot fullscreen        |
+| super + t               | stay on top                  |
+| alt + super + ←↑↓→      | resize window                |
+| ctrl + super + ←↑↓→     | move window                  |
+
+* [[./screenshot.png]]
+* [[./screenshot2.png]]
